@@ -15,7 +15,8 @@ MongoClient.connect('mongodb://localhost:27017',(err, database)=>{
 //  let allAges = [18,28,20,24,30,26,28];
 //  let allgenders = ['男','女','保密'];
 //
-    let data = [{name:18377852267,password:123456}]
+//  let data = [{name:18377852269,password:123456},{name:18377852268,password:123456},{name:18377852267,password:123456}]
+	let data=[{name:"画的",password:123456}]	;
 //  for(var i=0;i<5;i++){
 //      data.push({
 //          name:`用户${i}`,

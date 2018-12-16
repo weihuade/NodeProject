@@ -28,7 +28,7 @@ Router.post('/login',urlencodedParser,(req,res)=>{
 
         // 查询是否存在数据
         user.findOne({name:username,password:password},(err,result)=>{
-	console.log(result)
+//	console.log(result)
             if(result){
                 // 登录成功后，给前端发送用户表示：token
                 res.send({
