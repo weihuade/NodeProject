@@ -1,0 +1,100 @@
+/*(1)清除默认样式*/
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img,input{ margin:0; padding:0; }
+fieldset, img,input,button { border:0 none; padding:0;margin:0;outline-style:none; }   /*去掉input等聚焦时的蓝色边框*/
+div{
+	text-align: left;
+}
+ul,li,ol{ list-style:none; }
+ul > li {
+    list-style: outside none none;
+}
+/*button, input, select, textarea {
+    font-size: 1em;
+    margin: 0;
+    font-family: tahoma,arial;
+    color: #484848;
+}*/
+select, input { vertical-align:middle;}
+/*select, input, textarea { font-size:12px; margin:0; }*/
+textarea { resize:none; } /*防止拖动*/
+img {border:0; vertical-align:middle; }  
+/*  去掉图片低测默认的3像素空白缝隙，或者用display：block也可以*/
+/* table { border-collapse:collapse; } */
+a, body, button, input, label, select, textarea {
+    font: 12px/1.5 "Microsoft YaHei";
+}
+a:hover {
+	cursor: pointer;
+    text-decoration: underline;
+}
+a:active, a:focus, a:link, a:visited {
+    outline: 0 none;
+    text-decoration: none;
+}
+a {text-decoration:none;color: #37a0db; }
+a *{cursor: pointer;}
+/*（2）添加公共样式*/
+/*body {
+    font:12px Arial,Verdana,"\5b8b\4f53";
+    color:#666;
+    background:#fff;
+}*/
+/*清除浮动（不管）*/
+.clearfix:before,.clearfix:after {  /*清楚浮动*/
+    content:"";
+    display:table;
+}
+.clearfix:after{clear:both;}
+.clearfix{
+    *zoom:1;/*IE/7/6*/
+}
+.clear {
+    clear: both;
+    height: 0;
+    overflow: hidden;
+}
+h1,h2,h3,h4,h5,h6 {font-weight:normal;font-size:1em;}  /*设置h标签的大小，设置跟父亲一样大的字体font-size:100%;*/
+s,i,em{font-style:normal;text-decoration:none;}
+
+
+/*公共类*/
+.main-container {  /*内容、版心 提取 */
+    width: 1200px;
+    /*100%是继承父元素的高或者宽*/
+    height: 100%; 
+    /* background-color: moccasin; */
+    margin:0 auto;
+}
+.fl {
+    float:left;
+    display: inline;
+}
+.fr {
+    float:right;
+    display: inline;
+}
+.ac {
+    text-align:center;
+}
+/* 回头讲一下 */
+.hide {
+    display:none;
+}
+.fz12{ font-size: 12px;}
+.fz14{ font-size: 14px;}
+.fz16{ font-size: 16px;}
+
+.mr10{ margin-right: 10px;}
+
+.ml5{ margin-left: 5px;}
+.ml10{ margin-left: 10px;}
+.ml15{ margin-left: 15px;}
+.ml20{ margin-left: 15px;}
+
+.mt5 {margin-top: 5px;}
+.mt10{ margin-top: 10px;}
+
+.mb10 { margin-bottom: 10px;}
+.mb17{ margin-bottom: 17px;}
+.mb20 {margin-bottom: 20px;}
+
