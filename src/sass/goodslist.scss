@@ -179,6 +179,10 @@ body{
                     height: 38px;
                     border-radius: 0.25rem;
                     border: 1px solid #ced4da;
+                    .dropdown-toggle{
+                        color: #333;
+                        font-size: 14px;
+                    }
                     .dropdown-menu{
                         width: 167px;
                         a.dropdown-item{
@@ -207,6 +211,36 @@ body{
                 dd,dt{
                     ul {
                         li{
+                            span.tri {
+                                top: 4px;
+                                display: inline-block;
+                                width: 15px;
+                                height: 20px;
+                                position: relative;
+                                i{
+                                    position: absolute;
+                                    display: inline-block;
+                                    width: 15px;
+                                    height: 9px;
+                                    &:hover{
+                                        cursor: pointer;
+                                    }
+                                }
+                            }
+                            span.tri i.triangle-up{
+                                top: 0;
+                            }
+                            span.tri i.triangle-drown{
+                                bottom: 0;
+                                transform: rotateX(180deg);
+                            }
+                            span.tri i.triangle-up,
+                            span.tri i.triangle-drown{
+                                background-image: url(../assets/images/goodslist/triangle.png);
+                            }
+                            span.tri i.mouseOver{
+                                background-image: url(../assets/images/goodslist/tri-mouseOver.png);
+                            }
                             span{
                                 color: #333333;
                             }
@@ -227,6 +261,7 @@ body{
                         }
                         li.original{
                             width: 105px;
+                            
                         }
                         li.present{
                             width: 105px;
@@ -301,29 +336,78 @@ body{
                     }
                 }
             }
-            nav ul.pagination{
-                li {
-                    a{
-                        color: #333333;
-                        border-radius: 0px;
-                    }
+            div.pageWrape{
+                margin: 40px 40px 0 0;
+                overflow: hidden;
+                span.p-amount{
+                    line-height: 30px;
                 }
-                li.disabled{
-                    a{
-                        color: #D7D7D7;
+                ul.pagination{
+                    float: left;
+                    li{
+                        float: left;
+                        width: 37px;
+                        height: 30px;
+                        text-align: center;
                         border: 1px solid rgba(226, 226, 226, 1);
-
+                        border-right: none;
+                        a{
+                            color: #333333;
+                            &:hover{
+                                text-decoration: none;
+                            }
+                        }
+                    }
+                    li:first-child,li:last-child{
+                        width: 68px;
+                        height: 30px;
+                    }
+                    li:last-child{
+                        border-right: 1px solid rgba(226, 226, 226, 1);
+                    }
+                    li.disabled{
+                        a{
+                            color: #D7D7D7;                           
+                        }
+                    }
+                    li.active{
+                        background-color: rgba(0, 150, 136, 1);
+                        a{
+                            color: #fff;                          
+                        }     
+                    }
+                    li.omit{
+                       width: 40px;
                     }
                 }
-                li.active{
-                    a{
-                        color: #fff;
-                        background-color: rgba(0, 150, 136, 1);
-                    }     
+                div.p-option{
+                    select{
+                        margin-left: 10px;
+                        height: 30px;
+                    }
                 }
-                li.omit{
-                    a{
-                        padding: 8px 20px;
+                div.p-skip{
+                    margin: 0 10px;
+                    line-height: 30px;
+                    input[type="text"]{
+                        vertical-align:top;
+                        width: 41px;
+                        height: 30px;
+                        margin: 0 10px;
+                        text-align: center;
+                        border: 1px solid rgba(226, 226, 226, 1);
+                    }
+                    button.confirm{
+                        font-size: 12px;
+                        margin-left: 10px;
+                        vertical-align:top;
+                        width: 48px;
+                        height: 30px;                       
+                        background-color:#fff; 
+                        border: 1px solid rgba(226, 226, 226, 1);
+                        &:hover{
+                            cursor: pointer;
+                        }
                     }
                 }
             }

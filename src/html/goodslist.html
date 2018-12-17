@@ -11,17 +11,27 @@
     <script src="../assets/bootstrap-4.0.0/dist/js/bootstrap.js"></script>
     <title>商品列表</title>
     <script>
-        document.addEventListener("DOMContentLoaded",()=>{
-            // 侧边栏菜单
-            //多个选择器绑定不同事件
-            $(".menu .hover,.table dd span,.table dd li").on({
-                mouseenter:function(){
-                    $(this).addClass("mouseOver");
-                },
-                mouseleave:function(){
-                    $(this).removeClass("mouseOver");
-                }
+        // document.addEventListener("DOMContentLoaded",()=>{
+        //    (function(){
+            $(()=>{
+                // 侧边栏菜单
+                //多个选择器绑定不同事件
+                $(".menu .hover,.table dd span,.table dd li,li span.tri i").on({
+                    mouseenter:function(){
+                        $(this).addClass("mouseOver");
+                    },
+                    mouseleave:function(){
+                        $(this).removeClass("mouseOver");
+                    }
+                });
+        //    })();    
+            
+            //页码跳转
+            $(".pageWrape .pagination li.p-item").click(function(){
+                $("li.p-item").removeClass("active");
+                $(this).addClass("active");
             });
+
         })
     </script>
 </head>
@@ -111,10 +121,6 @@
         <div class="m_body">
             <div class="contain">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <!-- <a class="navbar-brand" href="#">Navbar</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button> -->
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item add">
@@ -135,16 +141,16 @@
                         <!-- <form class="form-inline my-2 my-lg-0"></form> -->
                             <input class="form-control mr-sm-2" type="search" placeholder="请输入" aria-label="Search">
                             <li class="nav-item dropdown">
-                                    <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    请选择分类
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <!-- <div class="dropdown-divider"></div> -->
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                </li>
+                                <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                请选择分类
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <!-- <div class="dropdown-divider"></div> -->
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </li>
                             <li class="btn">搜索</li>
                         <!-- </form> -->
                     </div>
@@ -165,14 +171,38 @@
                             </li>
                             <li class="original">
                                 <span>原价</span>
+                                <span class="tri">
+                                    <i class="triangle-up">
+                                        <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
+                                    </i>
+                                    <i class="triangle-drown">
+                                        <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
+                                    </i>
+                                </span>
 
                             </li>
                             <li class="present">
                                 <span>现价</span>
+                                <span class="tri">
+                                    <i class="triangle-up">
+                                        <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
+                                    </i>
+                                    <i class="triangle-drown">
+                                        <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
+                                    </i>
+                                </span>
 
                             </li>
                             <li class="stock">
                                 <span>库存</span>
+                                <span class="tri">
+                                    <i class="triangle-up">
+                                        <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
+                                    </i>
+                                    <i class="triangle-drown">
+                                        <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
+                                    </i>
+                                </span>
 
                             </li>
                             <li class="status">
@@ -180,6 +210,14 @@
                             </li>
                             <li class="time">
                                 <span>添加时间</span>
+                                <span class="tri">
+                                    <i class="triangle-up">
+                                        <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
+                                    </i>
+                                    <i class="triangle-drown">
+                                        <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
+                                    </i>
+                                </span>
                             </li>
                             <li class="handle">
                                 <span>操作</span>
@@ -225,45 +263,58 @@
                             </li>
                         </ul>
                     </dd>
-                    <dd></dd>
-                    <dd></dd>
-                    <dd></dd>
-                    <dd></dd>
-                    <dd></dd>
-                    <dd></dd>
-                    <dd></dd>
-                    <dd></dd>
-                    <dd></dd>
+                   
                 </dl>
 
-                <nav aria-label="...">
+                <div class="pageWrape fr">
+                    <span class="p-amount fl">共<i class="amount">100</i>条</span>
                     <ul class="pagination">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">上一页</a>
+                        <li class="disabled">
+                            <a class="p-link" href="#" tabindex="-1">上一页</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">1</a>
+                        <li class="p-item active">
+                            <a class="p-link" href="#">1</a>
                         </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                        <li class="p-item">
+                            <a class="p-link" href="#">2</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
+                        <li class="p-item">
+                            <a class="p-link" href="#">3</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
+                        <li class="p-item">
+                            <a class="p-link" href="#">4</a>
                         </li>
-                        <li class="page-item omit">
-                            <a class="page-link" href="#">...</a>
+                        <li class="p-item">
+                            <a class="p-link" href="#">5</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">10</a>
+                        <li class="omit">
+                            <a class="p-link" href="#">...</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">下一页</a>
+                        <li class="p-item">
+                            <a class="p-link" href="#">10</a>
+                        </li>
+                        <li class="">
+                            <a class="p-link" href="#">下一页</a>
                         </li>
                     </ul>
-                </nav>
+
+                    <div class="p-option fl">
+                        <select name="" id="">
+                                <option value="10条/页">10条/页</option>
+                                <option value="10条/页">20条/页</option>
+                                <option value="10条/页">30条/页</option>
+                                <option value="10条/页">40条/页</option>
+                                <option value="10条/页">50条/页</option>
+                        </select>
+                    </div>
+
+                    <!-- div内元素没有对齐,用vertical-align:top解决 -->
+                    <div class="p-skip fl">                      
+                            跳到第<input type="text" class="aim" value="1">页
+                            <button class="confirm">确定</button>                        
+                    </div>
+                </div>
+                
 
             </div>
         </div>
