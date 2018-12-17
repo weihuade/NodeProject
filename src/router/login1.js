@@ -22,7 +22,7 @@ Router.post('/login',urlencodedParser,(req,res)=>{
         // 使用集合
         let user = db.collection('username');
         
-        // 处理password为数字的情况
+        // 处理password为数字的情况,处理username为数字的情况
          username = isNaN(username) ? username : username*1;
         password = isNaN(password) ? password : password*1;
 

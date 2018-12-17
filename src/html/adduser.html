@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>添加用户</title>
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../assets/bootstrap-4.0.0/dist/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../css/adduser.css"/>
+<script src="../assets/jquery-3.2.1.js"></script>
+<script src="../assets/bootstrap-4.0.0/dist/js/bootstrap.js"></script>
+
+</head>
+<body>
+	
+ <!-- 左边的侧边栏 -->
+    <div class="aside fl">
+        <!-- 侧边栏标题 -->
+        <div class="title">
+            <img src="../assets/images/goodslist/logo.png">
+            <span>后台管理系统</span>
+        </div>
+        <!-- 侧边栏菜单 -->
+        <div class="menu">
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header hover" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                商品管理
+                            </button>
+                        </h5>
+                    </div>
+                
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <ul>
+                                <li class="hover">商品列表</li>
+                                <li class="hover">商品分类</li>
+                                <li class="hover">添加商品</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header hover" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                用户管理
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                            <ul>
+                                <li class="hover">用户列表</li>
+                                <li class="hover">添加用户</li>
+                            </ul>
+                    </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header hover" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                订单管理
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                            <ul>
+                                <li class="hover">订单列表</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+  <!-- 右边的主体部分 -->
+    <div class="main fl">
+        <!-- 导航头部 -->
+        <div class="m_head">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">首页</a></li>
+                    <li class="breadcrumb-item"><a href="#">用户管理</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <a href="#">添加用户</a>
+                    </li>
+                    
+                </ol>
+                <a href="#" class="fr">退出</a>
+            </nav>
+        <img  class="white" src="img/u66.png">
+        </div>
+        <!-- 主体内容 -->
+        <div class="m_body">
+            <div class="contain">
+           <form>
+  <div class="usernicheng">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">用户名</label>
+      <input type="email" class="form-control username" id="inputEmail4" placeholder="请输入用户名">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">昵称</label>
+      <input type="text" class="form-control nicheng" id="inputPassword4" placeholder="请输入昵称">
+    </div>
+  </div>
+  <div class="form-group pass">
+    <label for="inputAddress">密码</label>
+    <input type="password" class="form-control password" id="inputAddress" placeholder="请输入密码">
+  </div>
+  <div class="form-group repass">
+    <label for="inputAddress2">确认密码</label>
+    <input type="password" class="form-control repassword" id="inputAddress2" placeholder="确认密码">
+  </div>
+  <div class="form-row phonesex">
+    <div class="form-group col-md-2">
+      <label for="inputZip">手机号</label>
+      <input type="text" class="form-control phone" id="inputZip">
+    </div>
+   <div class="form-group col-md-4">
+      <label for="inputState">性别</label>
+      <select id="inputState" class="form-control sex">
+        <option selected>请选择</option>
+       <option >男</option>
+        <option>女</option>
+        <option>其他</option>
+      </select>
+    </div>
+   
+  </div>
+  <div class="form-group email1">
+    <label for="exampleFormControlInput1">邮箱地址</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="请输入邮箱地址">
+  </div>
+  <div class="form-group beizhu1">
+    <label for="exampleFormControlTextarea1">备注</label>
+    <textarea class="form-control beizhu" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">确认</button>
+</form>
+           
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

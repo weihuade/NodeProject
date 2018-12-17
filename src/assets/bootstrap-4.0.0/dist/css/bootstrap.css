@@ -108,7 +108,8 @@ ol,
 ul,
 dl {
   margin-top: 0;
-  margin-bottom: 1rem;
+ /* margin-bottom: 1rem;*/
+overflow: hidden;
 }
 
 ol ol,

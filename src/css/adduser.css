@@ -1,0 +1,116 @@
+@charset "UTF-8";
+body {
+  font-family: '微软雅黑 Bold', '微软雅黑';
+  font-style: normal;
+  color: #C2C2C2; }
+
+input {
+  cursor: pointer; }
+
+.aside {
+  width: 232px;
+  height: 892px;
+  position: absolute;
+  background-color: #20222a; }
+  .aside .title {
+    height: 52px;
+    line-height: 52px;
+    text-align: center; }
+    .aside .title span {
+      margin: 0 30px 0 10px;
+      font-weight: 700;
+      font-size: 16px;
+      text-align: center; }
+  .aside .menu #accordion .card {
+    border: none;
+    border-radius: 0rem;
+    background-color: #20222a; }
+    .aside .menu #accordion .card .card-header {
+      border: none;
+      border-radius: 0rem;
+      border-left: 5px solid #20222a;
+      border-color: #20222a;
+      border-bottom: 1px solid #ccc;
+      padding: 0; }
+      .aside .menu #accordion .card .card-header h5 {
+        margin-left: 55px; }
+        .aside .menu #accordion .card .card-header h5 button {
+          font-size: 18px; }
+    .aside .menu #accordion .card .mouseOver {
+      border-color: #5fb878;
+      background-color: #4e5465; }
+    .aside .menu #accordion .card .card-body {
+      border-bottom: 1px solid #5fb878;
+      padding: 0; }
+      .aside .menu #accordion .card .card-body ul li {
+        border-left: 5px solid #20222a;
+        padding-left: 66px;
+        font-size: 14px; }
+        .aside .menu #accordion .card .card-body ul li:hover {
+          cursor: pointer; }
+      .aside .menu #accordion .card .card-body ul .mouseOver {
+        border-color: #5fb878;
+        background-color: #4e5465; }
+    .aside .menu #accordion .card h5 button {
+      color: #C2C2C2;
+      height: 56px; }
+
+.main {
+  width: 1117px;
+  height: 800px;
+  margin-left: 232px; }
+  .main .m_head .white {
+    height: 40px; }
+  .main .m_head nav {
+    position: relative;
+    border-bottom: 2px solid #f1f1f1;
+    height: 52px; }
+    .main .m_head nav .breadcrumb {
+      background-color: #fff;
+      padding-left: 45px; }
+      .main .m_head nav .breadcrumb li a {
+        font-size: 13px;
+        color: #999999; }
+      .main .m_head nav .breadcrumb .active a {
+        color: #666666; }
+    .main .m_head nav .fr {
+      top: 50%;
+      right: 28px;
+      color: #169BD5;
+      font-size: 13px;
+      position: absolute;
+      transform: translateY(-50%); }
+  .main .m_body {
+    height: 100%;
+    border: 22px solid;
+    background-color: #f2f2f2;
+    border-image: url(../assets/images/goodslist/border.png); }
+    .main .m_body .contain {
+      height: 100%;
+      background-color: white; }
+      .main .m_body .contain .usernicheng {
+        margin-left: 50px; }
+      .main .m_body .contain .pass {
+        margin-left: 64px; }
+        .main .m_body .contain .pass .password {
+          width: 482px; }
+      .main .m_body .contain .repass {
+        margin-left: 64px; }
+        .main .m_body .contain .repass .repassword {
+          width: 482px; }
+      .main .m_body .contain .phonesex {
+        margin-left: 60px; }
+        .main .m_body .contain .phonesex .sex {
+          width: 311px; }
+      .main .m_body .contain .email1 {
+        width: 482px;
+        margin-left: 60px; }
+      .main .m_body .contain .beizhu1 {
+        width: 482px;
+        margin-left: 60px; }
+        .main .m_body .contain .beizhu1 .beizhu {
+          height: 155px; }
+      .main .m_body .contain .btn {
+        margin-left: 60px; }
+
+/*# sourceMappingURL=adduser.css.map */

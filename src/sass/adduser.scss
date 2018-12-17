@@ -1,0 +1,168 @@
+@charset "UTF-8";
+body{
+    font-family: '微软雅黑 Bold', '微软雅黑';
+    font-style: normal;
+    color: #C2C2C2;
+}
+input{
+    cursor: pointer;
+}
+.aside{
+    width: 232px;
+    height: 892px;
+    position: absolute;
+    background-color: rgba(32, 34, 42, 1);
+    .title{
+        height: 52px;
+        line-height: 52px;
+        text-align: center;
+        span{
+            margin: 0 30px 0 10px;
+            font-weight: 700;
+            font-size: 16px;
+            text-align: center;
+        }
+    }
+    .menu{
+        #accordion{
+            .card{ 
+                border: none;
+                border-radius: 0rem;
+                .card-header{
+                    border: none;
+                    border-radius: 0rem;
+                    border-left: 5px solid rgba(32, 34, 42, 1);
+                    border-color:rgba(32, 34, 42, 1);
+                    border-bottom: 1px solid #ccc;
+                    padding: 0;
+                    h5{
+                        margin-left: 55px;
+                        button{
+                            font-size: 18px;
+                        }
+                    }
+                }
+                .mouseOver{
+                    border-color:rgba(95, 184, 120, 1);
+                    background-color: rgba(78, 84, 101, 1);
+                     
+                }
+                .card-body{
+                    border-bottom: 1px solid rgba(95, 184, 120, 1);
+                    padding: 0;
+                    // margin-left: 72px;
+                    ul{
+                        // margin-left: 47px;
+                        li{
+                            border-left: 5px solid rgba(32, 34, 42, 1);
+                            padding-left: 66px;
+                            font-size: 14px;
+                            &:hover{
+                                cursor: pointer;
+                            }
+                        }
+                        .mouseOver{
+                            border-color:rgba(95, 184, 120, 1);
+                            background-color: rgba(78, 84, 101, 1);
+                             
+                        }
+                    }
+                }
+                h5 button{
+                    color: #C2C2C2;
+                    height: 56px;
+                }
+                background-color: rgba(32, 34, 42, 1);
+            }
+        }
+    }
+}
+
+
+.main{
+    width: 1117px;
+    height: 800px;
+    margin-left: 232px;
+    .m_head{
+        .white{
+            height: 40px;
+        }
+        nav{
+            position: relative;
+            border-bottom: 2px solid #f1f1f1;
+            height: 52px;
+            .breadcrumb{
+                background-color: #fff;
+                li a{
+                    font-size: 13px;
+                    color: #999999;
+                }
+                .active a{
+                    color: #666666;
+                }
+                padding-left: 45px;
+            }
+            .fr{
+                top: 50%;
+                right: 28px;
+                color: #169BD5;
+                font-size: 13px;
+                position: absolute;
+                transform: translateY(-50%);
+            }
+        }
+    }
+    .m_body{
+        height: 100%;
+        border: 22px solid;
+        background-color: rgba(242, 242, 242, 1);
+        border-image: url(../assets/images/goodslist/border.png);
+        .contain{
+            height: 100%;
+            background-color: rgba(255, 255, 255, 1);
+           //用户名
+           .usernicheng{
+               margin-left:50px ;
+           }
+             //密码
+             .pass{
+                 margin-left:64px;
+                 .password{
+                     width: 482px;
+                 }
+                 
+             }
+             //确认密码
+             .repass{
+                margin-left:64px;
+                 .repassword{
+                     width: 482px;
+                 }
+             }
+             //手机号
+             .phonesex{
+                 margin-left: 60px;
+                 .sex{
+                     width: 311px;
+                 }
+             }
+         //
+         .email1{
+              width: 482px;
+              margin-left: 60px;
+         }
+         //
+         .beizhu1{
+              width: 482px;
+              margin-left: 60px;
+              .beizhu{
+                  height: 155px;
+              }
+         }
+         //
+         .btn{
+             margin-left:60px;
+         }
+        }
+    }
+}
