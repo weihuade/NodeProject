@@ -150,10 +150,10 @@ dt {
   font-weight: $dt-font-weight;
 }
 
-dd {
-  margin-bottom: .5rem;
-  margin-left: 0; // Undo browser default
-}
+//dd {
+//margin-bottom: .5rem;
+//margin-left: 0; // Undo browser default
+//}
 
 blockquote {
   margin: 0 0 1rem;

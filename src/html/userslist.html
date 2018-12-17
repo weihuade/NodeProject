@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>用户列表</title>
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../assets/bootstrap-4.0.0/dist/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../css/userslist.css"/>
+<script src="../assets/jquery-3.2.1.js"></script>
+<script src="../assets/bootstrap-4.0.0/dist/js/bootstrap.js"></script>
+<script>
+        document.addEventListener("DOMContentLoaded",()=>{
+            // 侧边栏菜单
+            //多个选择器绑定不同事件
+            $(".menu .hover,.table dd span,.table dd li").on({
+                mouseenter:function(){
+                    $(this).addClass("mouseOver");
+                },
+                mouseleave:function(){
+                    $(this).removeClass("mouseOver");
+                }
+            });
+        })
+    </script>
+</head>
+ 
+<body>
+	 <!-- 左边的侧边栏 -->
+    <div class="aside fl">
+        <!-- 侧边栏标题 -->
+        <div class="title">
+            <img src="../assets/images/goodslist/logo.png">
+            <span>后台管理系统</span>
+        </div>
+        <!-- 侧边栏菜单 -->
+        <div class="menu">
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header hover" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                商品管理
+                            </button>
+                        </h5>
+                    </div>
+                
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <ul>
+                                <li class="hover">商品列表</li>
+                                <li class="hover">商品分类</li>
+                                <li class="hover">添加商品</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header hover" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                用户管理
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                            <ul>
+                                <li class="hover">用户列表</li>
+                                <li class="hover">添加用户</li>
+                            </ul>
+                    </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header hover" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                订单管理
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                            <ul>
+                                <li class="hover">订单列表</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	  <!-- 右边的主体部分 -->
+    <div class="main fl">
+        <!-- 导航头部 -->
+        <div class="m_head">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">首页</a></li>
+                    <li class="breadcrumb-item"><a href="#">用户管理</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <a href="#">用户列表</a>
+                    </li>
+                    
+                </ol>
+                <a href="#" class="fr">退出</a>
+            </nav>
+        <img  class="white" src="img/u66.png">
+        </div>
+        <!-- 主体内容 -->
+        <div class="m_body">
+            <div class="contain">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item add">
+                                <a class="nav-link" href="#">
+                                    <i class="icon"><img src="../assets/images/goodslist/add-icon.png"></i><span>添加</span> 
+                                </a>
+                            </li>
+                            <li class="nav-item delete">
+                                    <a class="nav-link" href="#">
+                                        <i class="icon"><img src="../assets/images/goodslist/cancel-icon.png"></i><span>删除</span>
+                                    </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <dl class="table">
+                    <dt>
+                        <ul>
+                            <li class="check">
+                                <input type="checkbox" class="allcheck">
+                            </li>
+                            <li class="gid"><span>#</span></li>
+                            <li class="name">
+                                <span>用户名</span>
+                            </li>
+                            <li class="classify">
+                                <span>性别</span>
+
+                            </li>
+                            <li class="original">
+                                <span>城市</span>
+
+                            </li>
+                            <li class="present">
+                                <span>签名</span>
+
+                            </li>
+                            <li class="stock">
+                                <span>职业</span>
+
+                            </li>
+                            <li class="status">
+                                <span>评分</span>
+                            </li>
+                            <li class="time">
+                                <span>注册时间</span>
+                            </li>
+                            <li class="handle">
+                                <span>操作</span>
+                            </li>
+                        </ul>
+                    </dt>
+                  <!--第一个-->
+                  <dd>
+                        <ul>
+                            <li class="check">
+                                <input type="checkbox" class="allcheck">
+                            </li>
+                            <li class="gid"><span>1</span></li>
+                            <li class="name">
+                                <span>张三</span>
+                            </li>
+                            <li class="classify">
+                                <span>男</span>
+
+                            </li>
+                            <li class="original">
+                                <span>P城</span>
+
+                            </li>
+                            <li class="present">
+                                <span>购物成瘾</span>
+
+                            </li>
+                            <li class="stock">
+                                <span>老板</span>
+
+                            </li>
+                            <li class="status">
+                                <span>88888</span>
+                            </li>
+                            <li class="time">
+                                <span>2019-11-11</span>
+                            </li>
+                            <li class="handle">
+                                <span class="edit"><img src="../assets/images/goodslist/pen.png" alt="编辑"></span>
+                                <span class="delete"><img src="../assets/images/goodslist/cancel-icon.png" alt="删除"></span>
+                                
+                            </li>
+                        </ul>
+                    </dd>
+                   
+                   <!--第二个-->
+                         <dd>
+                        <ul>
+                            <li class="check">
+                                <input type="checkbox" class="allcheck">
+                            </li>
+                            <li class="gid"><span>1</span></li>
+                            <li class="name">
+                                <span>张三</span>
+                            </li>
+                            <li class="classify">
+                                <span>男</span>
+
+                            </li>
+                            <li class="original">
+                                <span>P城</span>
+
+                            </li>
+                            <li class="present">
+                                <span>购物成瘾</span>
+
+                            </li>
+                            <li class="stock">
+                                <span>老板</span>
+
+                            </li>
+                            <li class="status">
+                                <span>88888</span>
+                            </li>
+                            <li class="time">
+                                <span>2019-11-11</span>
+                            </li>
+                            <li class="handle">
+                                <span class="edit"><img src="../assets/images/goodslist/pen.png" alt="编辑"></span>
+                                <span class="delete"><img src="../assets/images/goodslist/cancel-icon.png" alt="删除"></span>
+                                
+                            </li>
+                        </ul>
+                    </dd>
+                   
+                   <!--第三个-->
+                   
+                         <dd>
+                        <ul>
+                            <li class="check">
+                                <input type="checkbox" class="allcheck">
+                            </li>
+                            <li class="gid"><span>1</span></li>
+                            <li class="name">
+                                <span>张三</span>
+                            </li>
+                            <li class="classify">
+                                <span>男</span>
+
+                            </li>
+                            <li class="original">
+                                <span>P城</span>
+
+                            </li>
+                            <li class="present">
+                                <span>购物成瘾</span>
+
+                            </li>
+                            <li class="stock">
+                                <span>老板</span>
+
+                            </li>
+                            <li class="status">
+                                <span>88888</span>
+                            </li>
+                            <li class="time">
+                                <span>2019-11-11</span>
+                            </li>
+                            <li class="handle">
+                                <span class="edit"><img src="../assets/images/goodslist/pen.png" alt="编辑"></span>
+                                <span class="delete"><img src="../assets/images/goodslist/cancel-icon.png" alt="删除"></span>
+                                
+                            </li>
+                        </ul>
+                    </dd>
+                   
+                   <!--第四个-->
+                         <dd>
+                        <ul>
+                            <li class="check">
+                                <input type="checkbox" class="allcheck">
+                            </li>
+                            <li class="gid"><span>1</span></li>
+                            <li class="name">
+                                <span>张三</span>
+                            </li>
+                            <li class="classify">
+                                <span>男</span>
+
+                            </li>
+                            <li class="original">
+                                <span>P城</span>
+
+                            </li>
+                            <li class="present">
+                                <span>购物成瘾</span>
+
+                            </li>
+                            <li class="stock">
+                                <span>老板</span>
+
+                            </li>
+                            <li class="status">
+                                <span>88888</span>
+                            </li>
+                            <li class="time">
+                                <span>2019-11-11</span>
+                            </li>
+                            <li class="handle">
+                                <span class="edit"><img src="../assets/images/goodslist/pen.png" alt="编辑"></span>
+                                <span class="delete"><img src="../assets/images/goodslist/cancel-icon.png" alt="删除"></span>
+                                
+                            </li>
+                        </ul>
+                    </dd>
+                 
+                </dl>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
