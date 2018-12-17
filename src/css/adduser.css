@@ -111,6 +111,9 @@ input {
         .main .m_body .contain .beizhu1 .beizhu {
           height: 155px; }
       .main .m_body .contain .btn {
-        margin-left: 60px; }
+        margin-left: 60px;
+        width: 150px;
+        height: 45px;
+        font-size: 20px; }
 
 /*# sourceMappingURL=adduser.css.map */

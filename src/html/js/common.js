@@ -253,6 +253,7 @@ function startMove(obj, json, fnend) {
  */
 
 var checkReg = {
+	
 	trim: function(str) { //去掉前后空格
 		var reg = /^\s+|\s+$/g;
 		return str.replace(reg, '');
@@ -288,6 +289,7 @@ var checkReg = {
 		var reg=/^[\u2E80-\u9FFF]+$/;
 		return reg.test(str);
 	}
+
 }
 
 /*

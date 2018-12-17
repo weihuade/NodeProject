@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="../css/base.css">
 <link rel="stylesheet" href="../assets/bootstrap-4.0.0/dist/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="../css/adduser.css"/>
+<script type="text/javascript" src="js/common.js"></script>
 <script src="../assets/jquery-3.2.1.js"></script>
 <script src="../assets/bootstrap-4.0.0/dist/js/bootstrap.js"></script>
 
@@ -52,7 +53,7 @@
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                     <div class="card-body">
                             <ul>
-                                <li class="hover">用户列表</li>
+                                <a href="http://localhost:1809/html/userslist.html"><li class="hover">用户列表</li></a>
                                 <li class="hover">添加用户</li>
                             </ul>
                     </div>
@@ -104,25 +105,31 @@
   <div class="usernicheng">
     <div class="form-group col-md-6">
       <label for="inputEmail4">用户名</label>
-      <input type="email" class="form-control username" id="inputEmail4" placeholder="请输入用户名">
+      <input type="text" class="form-control username" id="inputEmail4" placeholder="请输入用户名">
+      <span class="username2"></span>
+      
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">昵称</label>
       <input type="text" class="form-control nicheng" id="inputPassword4" placeholder="请输入昵称">
+        <span class="nicheng2"></span>
     </div>
   </div>
   <div class="form-group pass">
     <label for="inputAddress">密码</label>
     <input type="password" class="form-control password" id="inputAddress" placeholder="请输入密码">
+     <span class="password2"></span>
   </div>
   <div class="form-group repass">
     <label for="inputAddress2">确认密码</label>
     <input type="password" class="form-control repassword" id="inputAddress2" placeholder="确认密码">
+     <span class="repassword2"></span>
   </div>
   <div class="form-row phonesex">
     <div class="form-group col-md-2">
       <label for="inputZip">手机号</label>
       <input type="text" class="form-control phone" id="inputZip">
+        <p class="phone2"></p>
     </div>
    <div class="form-group col-md-4">
       <label for="inputState">性别</label>
@@ -137,13 +144,14 @@
   </div>
   <div class="form-group email1">
     <label for="exampleFormControlInput1">邮箱地址</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="请输入邮箱地址">
+    <input type="email" class="form-control email" id="exampleFormControlInput1" placeholder="请输入邮箱地址">
+    <span class="email2"></span>
   </div>
   <div class="form-group beizhu1">
     <label for="exampleFormControlTextarea1">备注</label>
     <textarea class="form-control beizhu" id="exampleFormControlTextarea1" rows="3"></textarea>
   </div>
-  <button type="submit" class="btn btn-primary">确认</button>
+  <button type="button" class="btn btn-primary">确认</button>
 </form>
            
             </div>
@@ -152,3 +160,89 @@
 
 </body>
 </html>
+<script type="text/javascript">
+	
+	//用户名的正则验证
+	let username=document.querySelector('.username')
+	let username2=document.querySelector('.username2')
+	username.onkeyup=function(){
+			var val=username.value.trim();
+			if(val){
+				//非空
+				if(checkReg.chinese(val)){
+					username2.innerHTML='用户名格式正确';
+					username2.style.color='green';
+					
+				}else{
+					username2.innerHTML='用户名格式不正确';
+					username2.style.color='red';
+				}
+			}
+		}
+	
+	//密码和确认密码是否相等
+	let  password=document.querySelector('.password');
+	let  repassword=document.querySelector('.repassword');
+	let  repassword2=document.querySelector('.repassword2');
+	repassword.onkeyup=()=>{
+	let pass=password.value.trim();
+	let repass=repassword.value.trim();
+	if(pass&&repass){
+		
+		if(repass==pass){
+		repassword2.innerHTML='输入的密码一致';
+		repassword2.style.color='green';
+		}else{
+		repassword2.innerHTML='输入的密码不一致';
+		repassword2.style.color='red';
+			}
+		}else{
+		repassword2.innerHTML='密码不能为空';
+		repassword2.style.color='red';
+		}
+	}
+	
+	
+	//手机号正则
+	let phone=document.querySelector('.phone');
+	let phone2=document.querySelector('.phone2');
+	
+	phone.onkeyup=function(){
+			var val=phone.value.trim();
+			if(val){
+				//非空
+				if(checkReg.tel(val)){
+					phone2.innerHTML='手机号码格式正确';
+					phone2.style.color='green';
+					
+				}else{
+					phone2.innerHTML='手机号码不正确';
+					phone2.style.color='red';
+				}
+			}
+		}
+	
+	//邮箱正则
+	let email=document.querySelector('.email');
+	let email2=document.querySelector('.email2');
+	
+	email.onkeyup=function(){
+			var val=email.value.trim();
+			if(val){
+				//非空
+				if(checkReg.email(val)){
+					email2.innerHTML='邮箱格式正确';
+					email2.style.color='green';
+					
+				}else{
+					email2.innerHTML='邮箱格式不正确';
+					email2.style.color='red';
+				}
+			}
+		}
+	
+	
+	
+	
+	
+</script>
