@@ -151,7 +151,10 @@
     <label for="exampleFormControlTextarea1">备注</label>
     <textarea class="form-control beizhu" id="exampleFormControlTextarea1" rows="3"></textarea>
   </div>
-  <button type="button" class="btn btn-primary">确认</button>
+  <button type="button" class="btn btn-primary btninsert">确认</button>
+  <span class="hint"></span>
+  	
+  
 </form>
            
             </div>
@@ -166,7 +169,7 @@
 	let username=document.querySelector('.username')
 	let username2=document.querySelector('.username2')
 	username.onkeyup=function(){
-			var val=username.value.trim();
+			let val=username.value.trim();
 			if(val){
 				//非空
 				if(checkReg.chinese(val)){
@@ -242,7 +245,50 @@
 		}
 	
 	
+	//还没有验证用户是否存在到时做完了其他的东西需要在添加这里的功能。
 	
 	
+	
+	//当点击确认的时候向表中插入数据。
+	let btninsert =document.querySelector('.btninsert');
+	let nicheng=document.querySelector('.nicheng');
+	let sex=document.querySelector('.sex');
+	let beizhu=document.querySelector('.beizhu')
+	let hint=document.querySelector('.hint');
+	btninsert.onclick=()=>{
+		let use=username.value.trim();//用户名的值
+		let nichen=nicheng.value.trim();//昵称的值
+		let pass=password.value.trim();//密码
+		let repass=repassword.value.trim();//确认密码
+		let phon=phone.value.trim();//手机号
+		let xingbie=sex.value.trim();//性别
+		let email1=email.value.trim()//邮箱
+		let beizhu1=beizhu.value.trim()//备注
+		let status = [200,304];
+		if(use&&nichen&&pass&&repass&&phon&&xingbie&&email1&&beizhu1){
+			//将信息传给后并将数据插入数据库。
+			let xhr=new XMLHttpRequest();
+			xhr.onload=()=>{
+				if(status.includes(xhr.status)){
+					 let res = JSON.parse(xhr.responseText);
+					  if(res.code==1){
+					  	hint.innerHTML='添加用户成功'
+						hint.style.color='green';
+					  }else{
+					  	hint.innerHTML='添加用户失败'
+						hint.style.color='red';
+					  }
+				}
+			}
+			let data=`use=${use}&nichen=${nichen}&pass=${pass}&repass=${repass}&phon=${phon}&xingbie=${xingbie}&email1=${email1}&beizhu1=${beizhu1}`
+			xhr.open('put','/adduser/adduser1',true);
+			xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+			xhr.send(data);
+			
+		}else{
+			hint.innerHTML='请填入完整的信息'
+			hint.style.color='red';
+		}
+	}
 	
 </script>

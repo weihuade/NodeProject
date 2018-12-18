@@ -65,7 +65,7 @@ let status = [200,304];
                 }
 	  xhr.open('post','/login1/login',true);//这里的路径（关于登录的路由index.js和login1中那里所对应的路径）
 	  xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-	  xhr.send(`username=${_username}&password=${_password}`);
+	  xhr.send(`username1=${_username}&password1=${_password}`);
 	}else{
 		alert('请填入完整信息')
 	}

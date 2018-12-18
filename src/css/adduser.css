@@ -9,7 +9,7 @@ input {
 
 .aside {
   width: 232px;
-  height: 892px;
+  height: 1032px;
   position: absolute;
   background-color: #20222a; }
   .aside .title {
@@ -57,7 +57,7 @@ input {
 
 .main {
   width: 1117px;
-  height: 800px;
+  height: 940px;
   margin-left: 232px; }
   .main .m_head .white {
     height: 40px; }

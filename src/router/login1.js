@@ -11,8 +11,9 @@ let urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 Router.post('/login',urlencodedParser,(req,res)=>{
-   let {username,password} = req.body;
-   
+   let {username1,password1} = req.body;
+  console.log(req.body)
+   	
     MongoClient.connect('mongodb://localhost:27017',(err, database)=>{
         //连接成功后执行这个回调函数
 
@@ -23,11 +24,11 @@ Router.post('/login',urlencodedParser,(req,res)=>{
         let user = db.collection('username');
         
         // 处理password为数字的情况,处理username为数字的情况
-         username = isNaN(username) ? username : username*1;
-        password = isNaN(password) ? password : password*1;
+//       username = isNaN(username) ? username : username*1;
+        password1 = isNaN(password1) ? password1 : password1*1;
 
         // 查询是否存在数据
-        user.findOne({name:username,password:password},(err,result)=>{
+        user.findOne({username:username1,password:password1},(err,result)=>{
 //	console.log(result)
             if(result){
                 // 登录成功后，给前端发送用户表示：token
