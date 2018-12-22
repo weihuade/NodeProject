@@ -249,13 +249,21 @@
 	
 	
 	
+
+		
+	
 	//当点击确认的时候向表中插入数据。
 	let btninsert =document.querySelector('.btninsert');
 	let nicheng=document.querySelector('.nicheng');
 	let sex=document.querySelector('.sex');
 	let beizhu=document.querySelector('.beizhu')
 	let hint=document.querySelector('.hint');
+	
+	function allvalues(){
+		
+	}
 	btninsert.onclick=()=>{
+	//查询数据库中的数据有多少条。	
 		let use=username.value.trim();//用户名的值
 		let nichen=nicheng.value.trim();//昵称的值
 		let pass=password.value.trim();//密码
@@ -274,21 +282,156 @@
 					  if(res.code==1){
 					  	hint.innerHTML='添加用户成功'
 						hint.style.color='green';
+						username.value="";
+						nicheng.value="";
+						password.value="";
+						repassword.value="";
+						phone.value="";
+						sex.value="";
+						email.value="";
+						beizhu.value=""
 					  }else{
 					  	hint.innerHTML='添加用户失败'
 						hint.style.color='red';
 					  }
 				}
 			}
-			let data=`use=${use}&nichen=${nichen}&pass=${pass}&repass=${repass}&phon=${phon}&xingbie=${xingbie}&email1=${email1}&beizhu1=${beizhu1}`
+			let data=`use=${use}&nichen=${nichen}&pass=${pass}&repass=${repass}&phon=${phon}&xingbie=${xingbie}&email1=${email1}&beizhu1=${beizhu1}&gid=${2}`
 			xhr.open('put','/adduser/adduser1',true);
 			xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 			xhr.send(data);
-			
+						
 		}else{
-			hint.innerHTML='请填入完整的信息'
+			hint.innerHTML='请填入完整的信息';
 			hint.style.color='red';
 		}
 	}
+	
+	let contain=document.querySelector('.contain');
+	function render(arr){
+		let html='';
+		for(let i=0;i<arr.length;i++){
+			html+=`<form>
+  <div class="usernicheng">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">用户名</label>
+      <input type="text" class="form-control username" id="inputEmail4" placeholder="请输入用户名" value="${arr[i].use}">
+      <span class="username2"></span>
+      
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">昵称</label>
+      <input type="text" class="form-control nicheng" id="inputPassword4" placeholder="请输入昵称" value="${arr[i].nichen}">
+        <span class="nicheng2"></span>
+    </div>
+  </div>
+  <div class="form-group pass">
+    <label for="inputAddress">密码</label>
+    <input type="password" class="form-control password" id="inputAddress" placeholder="请输入密码" value="${arr[i].pass}">
+     <span class="password2"></span>
+  </div>
+  <div class="form-group repass">
+    <label for="inputAddress2">确认密码</label>
+    <input type="password" class="form-control repassword" id="inputAddress2" placeholder="确认密码" value="${arr[i].repass}">
+     <span class="repassword2"></span>
+  </div>
+  <div class="form-row phonesex">
+    <div class="form-group col-md-2">
+      <label for="inputZip">手机号</label>
+      <input type="text" class="form-control phone" id="inputZip" value="${arr[i].phon}">
+        <p class="phone2"></p>
+    </div>
+   <div class="form-group col-md-4">
+      <label for="inputState">性别</label>
+      <select id="inputState" class="form-control sex" value="">
+      	<option selected>${arr[i].xingbie}</option>
+        <option >请选择</option>
+       <option >男</option>
+        <option>女</option>
+        <option>其他</option>
+      </select>
+    </div>
+   
+  </div>
+  <div class="form-group email1">
+    <label for="exampleFormControlInput1">邮箱地址</label>
+    <input type="email" class="form-control email" id="exampleFormControlInput1" placeholder="请输入邮箱地址" value="${arr[i].email1}">
+    <span class="email2"></span>
+  </div>
+  <div class="form-group beizhu1">
+    <label for="exampleFormControlTextarea1">备注</label>
+    <textarea class="form-control beizhu" id="exampleFormControlTextarea1" rows="3" >${arr[i].beizhu1}</textarea>
+  </div>
+  <button type="button" class="btn btn-primary btninsert btnupdate">确认</button>
+  <span class="hint"></span>
+	<span class="reminder"></span>
+  
+  
+</form>`
+		}
+		contain.innerHTML=html;
+	}
+	updataall();
+	
+	
+	
+	//获取id进行渲染
+	let xhr=new XMLHttpRequest();
+	let status = [200,304];
+	let  res=(location.search).slice(1)
+	let id=res.split('=')[1];
+	let data1=`id=${id}`;
+	if(data1){
+		xhr.onload=function(){
+	if(status.includes(xhr.status)){
+		 let res = JSON.parse(xhr.responseText);
+		let arr=res.data;
+		 render(arr);
+		}
+	}
+	
+	xhr.open('post','/adduser/slecteone',true);
+	xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+	xhr.send(data1);
+	
+	}
+	
+	
+	
+	
+	function updataall(){
+		//点击更新数据。
+	$('.contain').on('click','.btnupdate',function(){
+		let use1=$('.username').val();//用户名的值
+		let nichen=$('.nicheng').val();//昵称的值
+		let pass=$('.password').val();  //密码
+		let repass=$('.repassword').val();//确认密码
+		let phon=$('.phone').val();//手机号
+		let xingbie=$('.sex').val();//性别
+
+		let email1=$('.email').val()//邮箱
+		let beizhu1=$('.beizhu').val()//备注
+		let data=`use=${use1}&nichen=${nichen}&pass=${pass}&repass=${repass}&phon=${phon}&xingbie=${xingbie}&email1=${email1}&beizhu1=${beizhu1}&idx=${id}`
+			let reminder=document.querySelector('.reminder')
+	xhr.onload=function(){
+		if(status.includes(xhr.status)){
+			 let res = JSON.parse(xhr.responseText);
+			 console.log(res);
+			if(res.code==1){
+				
+				reminder.innerHTML='更新数据成功';
+				reminder.style.color='green';
+			}else{
+				reminder.innerHTML='更新数据失败';
+				reminder.style.color='red';
+			}
+		}
+	}
+	xhr.open('post','/adduser/upadata',true);
+	xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+	xhr.send(data);
+	});
+	}
+	
 	
 </script>

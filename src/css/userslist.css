@@ -158,7 +158,10 @@ input {
       .main .m_body .contain dl.table dd ul li.check, .main .m_body .contain dl.table dt ul li.check {
         width: 52px; }
       .main .m_body .contain dl.table dd ul li.gid, .main .m_body .contain dl.table dt ul li.gid {
-        width: 40px; }
+        width: 40px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
       .main .m_body .contain dl.table dd ul li.name, .main .m_body .contain dl.table dt ul li.name {
         width: 140px; }
       .main .m_body .contain dl.table dd ul li.classify, .main .m_body .contain dl.table dt ul li.classify {
@@ -166,7 +169,10 @@ input {
       .main .m_body .contain dl.table dd ul li.original, .main .m_body .contain dl.table dt ul li.original {
         width: 102px; }
       .main .m_body .contain dl.table dd ul li.present, .main .m_body .contain dl.table dt ul li.present {
-        width: 102px; }
+        width: 102px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
       .main .m_body .contain dl.table dd ul li.stock, .main .m_body .contain dl.table dt ul li.stock {
         width: 102px; }
       .main .m_body .contain dl.table dd ul li.status, .main .m_body .contain dl.table dt ul li.status {

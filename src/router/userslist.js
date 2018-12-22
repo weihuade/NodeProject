@@ -1,19 +1,46 @@
+//用户列表的后台系统
 const express = require('express');
 const mongodb = require('mongodb');
-const bodyParser = require('body-parser');
-
 let Router = express.Router();
-let app=express();
-// 获取Mongo客户端
-const MongoClient = mongodb.MongoClient;
+
+const bodyParser = require('body-parser');
 let urlencodedParser = bodyParser.urlencoded({ extended: false })
+const MongoClient = mongodb.MongoClient;
+const db = require('../db');
+
+//1、查询进行渲染
+Router.get('/select',async (req,res)=>{
+    //获取所有分类
+
+    let data
+    try{
+        data = await db.find('username',{});
+    }catch(err){
+        data = err;
+    }
+
+    res.send(data);
+});
 
 
 
-Router.post('/login',urlencodedParser,(req,res)=>{
-   let {username1,password1} = req.body;
-  console.log(req.body)
-   	
+//3.删除单行的路由
+Router.delete('/del',urlencodedParser,async(req,res)=>{
+    let data
+//  console.log(req.query);
+    console.log(req.body);
+    try{
+        data = await db.delete('username',req.body);//什么用条件查询进行删除
+    }catch(err){
+        data = err;
+    }
+
+    res.send(data);
+})
+
+
+//删除多行的路由
+Router.delete('/deleteall',urlencodedParser,(req,res)=>{
     MongoClient.connect('mongodb://localhost:27017',(err, database)=>{
         //连接成功后执行这个回调函数
 
@@ -22,16 +49,11 @@ Router.post('/login',urlencodedParser,(req,res)=>{
 	
         // 使用集合
         let user = db.collection('username');
-        
-        // 处理password为数字的情况,处理username为数字的情况
-//       username = isNaN(username) ? username : username*1;
-//      password1 = isNaN(password1) ? password1 : password1*1;
-
-        // 查询是否存在数据
-        user.findOne({use:username1,pass:password1},(err,result)=>{
-//	console.log(result)
+  			
+        // 删除所有gid等于2的数据。
+        user.deleteMany({"gid":'2'},(err,result)=>{
+//      	console.log(result)
             if(result){
-                // 登录成功后，给前端发送用户表示：token
                 res.send({
                     code:1,
                     data:result,
@@ -51,6 +73,10 @@ Router.post('/login',urlencodedParser,(req,res)=>{
 
     });
 });
+
+
+
+
 
 
 module.exports = Router;

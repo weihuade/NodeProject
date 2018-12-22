@@ -224,6 +224,9 @@ input{
                         }
                         li.gid{
                             width: 40px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
                         }
                         li.name{
                             width: 140px;
@@ -236,6 +239,10 @@ input{
                         }
                         li.present{
                             width: 102px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            
                         }
                         li.stock{
                             width: 102px;

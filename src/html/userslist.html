@@ -115,11 +115,11 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item add">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link adduser" href="./adduser.html">
                                     <i class="icon"><img src="../assets/images/goodslist/add-icon.png"></i><span>添加</span> 
                                 </a>
                             </li>
-                            <li class="nav-item delete">
+                            <li class="nav-item delete deleteall">
                                     <a class="nav-link" href="#">
                                         <i class="icon"><img src="../assets/images/goodslist/cancel-icon.png"></i><span>删除</span>
                                     </a>
@@ -131,9 +131,9 @@
                     <dt>
                         <ul>
                             <li class="check">
-                                <input type="checkbox" class="allcheck">
+                                <input type="checkbox" class="allcheck quanxuan">
                             </li>
-                            <li class="gid"><span>#</span></li>
+                            <li class="gid"><span>ID</span></li>
                             <li class="name">
                                 <span>用户名</span>
                             </li>
@@ -159,16 +159,18 @@
                             <li class="time">
                                 <span>注册时间</span>
                             </li>
+                           
                             <li class="handle">
                                 <span>操作</span>
                             </li>
                         </ul>
                     </dt>
-                  <!--第一个-->
-                  <dd>
+                  <!--做渲染用的大盒子 render-->
+               <div class="render">
+                  <!--<dd>
                         <ul>
-                            <li class="check">
-                                <input type="checkbox" class="allcheck">
+                            <li class="check dagou">
+                                <input type="checkbox" class="allcheck gouxuan">
                             </li>
                             <li class="gid"><span>1</span></li>
                             <li class="name">
@@ -200,134 +202,197 @@
                                 <span class="edit"><img src="../assets/images/goodslist/pen.png" alt="编辑"></span>
                                 <span class="delete"><img src="../assets/images/goodslist/cancel-icon.png" alt="删除"></span>
                                 
-                            </li>
-                        </ul>
-                    </dd>
-                   
-                   <!--第二个-->
-                         <dd>
-                        <ul>
-                            <li class="check">
-                                <input type="checkbox" class="allcheck">
-                            </li>
-                            <li class="gid"><span>1</span></li>
-                            <li class="name">
-                                <span>张三</span>
-                            </li>
-                            <li class="classify">
-                                <span>男</span>
-
-                            </li>
-                            <li class="original">
-                                <span>P城</span>
-
-                            </li>
-                            <li class="present">
-                                <span>购物成瘾</span>
-
-                            </li>
-                            <li class="stock">
-                                <span>老板</span>
-
-                            </li>
-                            <li class="status">
-                                <span>88888</span>
-                            </li>
-                            <li class="time">
-                                <span>2019-11-11</span>
-                            </li>
-                            <li class="handle">
-                                <span class="edit"><img src="../assets/images/goodslist/pen.png" alt="编辑"></span>
-                                <span class="delete"><img src="../assets/images/goodslist/cancel-icon.png" alt="删除"></span>
-                                
-                            </li>
-                        </ul>
-                    </dd>
-                   
-                   <!--第三个-->
-                   
-                         <dd>
-                        <ul>
-                            <li class="check">
-                                <input type="checkbox" class="allcheck">
-                            </li>
-                            <li class="gid"><span>1</span></li>
-                            <li class="name">
-                                <span>张三</span>
-                            </li>
-                            <li class="classify">
-                                <span>男</span>
-
-                            </li>
-                            <li class="original">
-                                <span>P城</span>
-
-                            </li>
-                            <li class="present">
-                                <span>购物成瘾</span>
-
-                            </li>
-                            <li class="stock">
-                                <span>老板</span>
-
-                            </li>
-                            <li class="status">
-                                <span>88888</span>
-                            </li>
-                            <li class="time">
-                                <span>2019-11-11</span>
-                            </li>
-                            <li class="handle">
-                                <span class="edit"><img src="../assets/images/goodslist/pen.png" alt="编辑"></span>
-                                <span class="delete"><img src="../assets/images/goodslist/cancel-icon.png" alt="删除"></span>
-                                
-                            </li>
-                        </ul>
-                    </dd>
-                   
-                   <!--第四个-->
-                         <dd>
-                        <ul>
-                            <li class="check">
-                                <input type="checkbox" class="allcheck">
-                            </li>
-                            <li class="gid"><span>1</span></li>
-                            <li class="name">
-                                <span>张三</span>
-                            </li>
-                            <li class="classify">
-                                <span>男</span>
-
-                            </li>
-                            <li class="original">
-                                <span>P城</span>
-
-                            </li>
-                            <li class="present">
-                                <span>购物成瘾</span>
-
-                            </li>
-                            <li class="stock">
-                                <span>老板</span>
-
-                            </li>
-                            <li class="status">
-                                <span>88888</span>
-                            </li>
-                            <li class="time">
-                                <span>2019-11-11</span>
-                            </li>
-                            <li class="handle">
-                                <span class="edit"><img src="../assets/images/goodslist/pen.png" alt="编辑"></span>
-                                <span class="delete"><img src="../assets/images/goodslist/cancel-icon.png" alt="删除"></span>
-                                
-                            </li>
-                        </ul>
-                    </dd>
-                 
+                           	 	</li>
+                        	</ul>
+                    	</dd> 
+                    	-->
+                    	
+             
+                
+                    </div>
                 </dl>
             </div>
         </div>
     </div>
 </body>
 </html>
+<script type="text/javascript">
+	//删除当行
+	let status = [200,304];
+	let xhr= new XMLHttpRequest();
+	$('.render').on('click','.delete',function(){
+		let re=confirm('是否确认删除')
+		if(re){
+			xhr.onload=()=>{
+			if(status.includes(xhr.status)){
+			let res = JSON.parse(xhr.responseText);
+			console.log(res)
+			
+			if(res.code==1){
+				alert('删除成功');
+				}else{
+					alert('删除失败');
+				}
+			}
+			
+		}
+		
+		
+		$(this).parent().parent().parent().remove();
+		//做用户的接口
+		let id=$(this).parents('dd').attr('data-id')
+		data=`_id=${id}`;
+		xhr.open('delete','/userslist/del',true)
+		xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+		xhr.send(data);
+		var arr=checked();//判断哪行被选中，存到该数组中
+		}
+		xuanran();
+		
+	});
+	
+	
+	//全选
+	let isCheacked=true;
+	$('.quanxuan').on('click',function(){
+		if(isCheacked){
+			$('.dagou input').prop('checked','checked');
+			$('.quanxuan input').prop('checked','checked');
+			isCheacked=!isCheacked;
+		}else{
+			$('.dagou input').removeAttr('checked');
+			$('.quanxuan input').removeAttr('checked');
+		}
+		
+		var arr=checked();//判断哪行被选中，存到该数组中
+		
+	})
+	
+	
+	
+	
+	//删除多行
+	$('.deleteall').on('click',function(){
+		var arr=checked();
+		var res=confirm('您确定要删除全部用户吗？');
+		if(res){
+		//删除arr下标对应的行
+		
+		for(var i=arr.length-1;i>=0;i--){
+			//从后面开始删除
+			xhr.onload=function(){
+			if(status.includes(xhr.status)){
+			 let res = JSON.parse(xhr.responseText);
+			 console.log(res);
+			 
+			}
+		}
+			xhr.open('delete','/userslist/deleteall',true)
+			xhr.send()
+			$('.dagou').eq(arr[i]).parent().parent().parent().remove();
+			}
+		}
+		xuanran();
+	});
+	
+	//8.循环判断哪行被选中了
+function checked(){
+	var arr=[];//设置一个空数组，等会被选中的就把下标存起来
+	var le=$('.dagou input').length;
+	for(var i=0;i<le;i++){
+		if($('.dagou input').eq(i).prop('checked')){
+			//不为空证明被选中了
+			arr.push(i);
+		}
+	}
+	return arr;
+}
+	
+	
+	
+//单行选中
+		$('.dagou').on('click','.gouxuan',function(){
+			var arr=checked();
+			if(arr.length==$('.gouxuan').length){
+				$('.quanxuan').prop('checked','checked');
+				isCheacked=false;
+			}else{
+				$('.quanxuan').removeAttr('checked');
+				//证明没有选中全部
+				isCheacked=true;
+			}
+			var arr=checked();//判断哪行被选中，存到该数组中
+		});
+		
+	
+	//做数据的渲染
+	xuanran()
+   function xuanran(){
+   		xhr.onload=()=>{
+		if(status.includes(xhr.status)){
+			 let res = JSON.parse(xhr.responseText);
+				let data=res.data
+//				console.log(data)
+				let html='';
+				for(let i=0;i<data.length;i++){
+					html+=`   <dd data-id="${data[i]._id}">
+                        <ul>
+                            <li class="check dagou">
+                                <input type="checkbox" class="allcheck gouxuan">
+                            </li>
+                            <li class="gid"><span class="id"></span></li>
+                            <li class="name">
+                                <span>${data[i].use}</span>
+                            </li>
+                            <li class="classify">
+                                <span>${data[i].xingbie}</span>
+
+                            </li>
+                            <li class="original">
+                                <span>成都</span>
+
+                            </li>
+                            <li class="present">
+                                <span>${data[i].beizhu1}</span>
+
+                            </li>
+                            <li class="stock">
+                                <span>老板</span>
+
+                            </li>
+                            <li class="status">
+                                <span>88888</span>
+                            </li>
+                            <li class="time">
+                                <span>${data[i].add_time.substring(0,10)}</span>
+                            </li>
+                            <li class="handle">
+                                <a href="./adduser.html?id=${data[i]._id}">
+                                <span class="edit"><img src="../assets/images/goodslist/pen.png" alt="编辑"></span>
+                            	</a>
+                                <span class="delete"><img src="../assets/images/goodslist/cancel-icon.png" alt="删除"></span>
+                                
+                           	 	</li>
+                        	</ul>
+                    	</dd> 
+                    	`;
+				}
+				$('.render').html(html);
+				
+				//排序
+                let number = $('.render dd li.gid span');
+                for(let i=0;i<number.length;i++){
+                    number[i].innerHTML = i+1;
+                }
+
+		}
+		
+	}
+	xhr.open('get','/userslist/select',true)
+	xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+	xhr.send()
+	
+   }
+	
+	
+</script>

@@ -10,6 +10,7 @@ const mongodb = require('mongodb');
 // 获取Mongo客户端
 const MongoClient = mongodb.MongoClient
 
+const ObjectID=mongodb.ObjectID;
 // 连接数据库
 function connect(collectionName){
     return new Promise((resolve,reject)=>{
@@ -102,7 +103,7 @@ exports.delete = (collectionName,query)=>{
 
 
         // 查询所有分类
-        col[Array.isArray(query) ? 'deleteMany':'deleteOne'](query,(err,result)=>{
+        col[Array.isArray(query) ? 'deleteMany':'deleteOne']({_id:ObjectID(query._id)},(err,result)=>{
             if(err){
                 reject({
                     code:0,
