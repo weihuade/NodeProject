@@ -35,7 +35,7 @@ MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("nodeproject");
 // let{id}=req.body;//得到前端传过来的id
-// console.log(req.body.id);
+
 // let ObjectID = require('mongodb').ObjectID;//传成对象不然匹配不了数据库里的东西。
     var whereStr = {_id:ObjectID(req.body.id)};  // 查询条件
     dbo.collection("username").find(whereStr).toArray(function(err, result) {

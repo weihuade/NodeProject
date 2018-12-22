@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/cars.css"/>
+		<script type="text/javascript" src="../lib/jquery-1.10.1.min.js"></script>
+			
+		
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/cars.js"></script>	
+	</head>
+	<body>
+		<div class="top-nav">
+			<div class="wrapper">
+					<ul class="top-r">
+					<li>
+						
+						<a href="#" style="color: #ff5482;" class="username">用户名</a>
+						<a href="#" >[退出]</a>
+					</li>
+					<li class="seg"></li> 
+					<li>消息</li>
+					<li class="seg"></li> 
+					<li>我的订单</li>
+					<li class="seg"></li> 
+					<li>我的贝贝</li>
+					<li class="seg"></li> 
+					<li>
+						<a href="#">商家入驻</a>
+					</li>
+					<li class="seg"></li>
+					<li class="shangjia">
+						<a href="">贝贝商家中心</a>
+						<i><img src="../css/img/xiangxia.png"/></i>
+						<ul class="top-r1" style="display: none;">
+							<li><a>贝店商家中心</a></li>
+							<li><a style="padding-right:9px ;">供应商中心</a></li>
+						</ul>
+					</li>
+					<li class="seg"></li>
+					<li class="bangzhu">
+						<dd class="bangzhu1"><span class=""><img src="../css/img/wenhao.png"/></span>
+						<a href="">帮助中心</a>
+						<i><img src="../css/img/xiangxia.png"/></i>
+						<p style="display: none;" class="bangzhu2">
+							<i><img src="../css/img/kefu.png"/></i>	
+							<a href="#">联系客服</a>
+						</p>
+						</dd>
+						
+					</li>
+					<li class="guanzhu">
+						关注
+						<i><img src="../css/img/xiangxia.png"/></i>
+						<div class="guanzhu1"style="display: none;">
+							<div class="guanzhu1-l">
+								<p>微信号：beibeiclub</p>
+								<img src="../img/erweima.png"  title="微信扫一扫"/>
+								<p>订阅贝贝官方微信</p>
+							</div>
+							<div class="guanzhu1-r">
+								<img src="../img/weibo.png" style="opacity: 0.6;" title="关注贝贝新浪微博"/>
+								<img src="../img/kongjian.png" style="opacity: 0.6;" title="关注贝贝QQ空间"/>
+							</div>
+						</div>
+					</li>
+					
+				</ul>
+				
+			</div>
+			
+		</div>
+		<div class="beibei">
+				<div class="container1">
+					<img src="../img/beibeitop.png" class="img1">
+					<div class="beibei-r">
+						<img src="../img/top2-r.png" class="img2">
+						<div class="beibei-r1" style="border-bottom-right-radius: 10px;">
+							<div class="beibei-r2">
+								<img src="../img/gouwuche.png">
+							</div>
+							<span>
+							我的购物车
+							<i><img src="../css/img/baisexiangxia.png"></i>
+						</span>
+							<div class="gouwuche" style="display: none;">
+								<div class="ganjin">
+									赶紧去挑选商品吧！
+								</div>
+								<div class="gouwuche-bott">
+									<div class="xiaoji">
+
+										小计:
+										<i>￥0.00</i>
+
+									</div>
+									<p class="jiesuan">
+										<span>
+								<img src="../img/gouwuche.png">
+							</span>
+										<i>去购物车结算</i>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<div class="con">
+		<div class="neirong">
+			<div class="white-bg">
+				<!--第一块-->
+				<div class="cart-process">
+				<h1>我的购物车</h1>	
+				<i></i>
+				</div>
+				
+					
+				<!--第二块-->
+				<div class="cart-list">
+					<form class="pure-form">
+						<table class="pure-table">
+							<thead>
+								<tr>
+                        <th class="cart-th-check">
+                            <input type="checkbox" checked="checked" class="J_checkAll"> 全选
+                        </th>
+                        <th class="cart-th-item-info">商品</th>
+                        <th class="cart-th-item-sku">商品信息</th>
+                        <th class="cart-th-item-price">单价(元)</th>
+                        <th class="cart-th-number">数量</th>
+                        <th class="cart-th-subtotal">小计(元)</th>
+                        <th class="cart-th-ops">操作</th>
+                   	 </tr>
+							</thead>
+						<tbody class="view-CartList">
+							<!--
+								
+								<tr class="seg-entry"></tr>
+							<tr class="dianming">
+								<td colspan="7">
+									<input type="checkbox" class="J_eventCheck" checked="checked">
+									<span class="event-title">
+										巴拉巴拉
+									</span>
+								</td>
+								
+							</tr>
+							<tr class="xuanlan">
+								<td class="cart-td-check">
+									<input type="checkbox" name="" class="gouxuan" />
+								</td>
+								<td class="cart-td-item-info">
+									<a class="image"><img src="../img/jiarong.jpg"/></a>
+									<a class="biaoti">巴拉巴拉女童套装秋冬小童宝宝两件套儿童卫衣裤子加绒厚</a>
+								</td>
+								<td class="cart-td-item-sku">
+									<p>中国红6620, 120cm不开裆</p>
+								</td>
+								<td class="cart-td-item-price">
+									<p class="view-ItemEntryPrice">269.00</p>
+									<p class="strike">269.00</p>
+								</td>
+								<td class="cart-td-number">
+								<div>
+									<span class="jian">-</span>
+									<input type="text"  value="1" class="shuliang" />
+									<span class="jia">+</span>	
+									
+								</div>
+								</td>
+								<td class="cart-td-subtotal">
+									<span class="price">269.00</span>
+								</td>
+								<td class="del1">
+									<span class="del">删除</span>
+								</td>
+								
+							</tr>
+							<tr class="xiaoji1">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td class="xiaoji2">
+									<div class="subtotal-row">
+									<span class="xiaoji">小计：</span>
+									<span class="jiage1">269.00</span>
+								</div>
+								</td>
+								<td></td>
+								</tr>
+								-->
+						</tbody >
+						
+					</table>
+						
+						<div class="queren">
+							<div class="pay-bar">
+								<a class="pay-btn fr">确认订单</a>
+								<span class="allprice fr">
+									<b class="u-yen-icon">￥</b>
+									0.00
+								</span>
+								<div class="yiyouhui fr">
+									已优惠
+									<span class="youhui">0.00</span>
+									元
+									<span class="allp">总计(不含运费)</span>:
+								</div>
+								<div class="cart-summary fr">
+									共有
+									<span  class="allnum">1</span>
+									件商品,
+								</div>
+								<div class="quanxuan1">
+									<input type="checkbox" name="" class="quanxuan" value="" />
+									<label class="quanxuan2">全选</label>
+									<span class="deleteall">
+										删除
+									</span>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!--第三块-->
+			</div>
+		</div>
+	</div>
+	<div class="footer2">
+				<div class="container">
+					<ul>
+						<li>首页</li>
+						<li class="right-line">|</li>
+						<li>关于贝贝</li>
+						<li class="right-line">|</li>
+						<li>商家入驻</li>
+						<li class="right-line">|</li>
+						<li>正品保证</li>
+						<li class="right-line">|</li>
+						<li>人才招聘</li>
+						<li class="right-line">|</li>
+						<li>联系我们</li>
+						<li class="right-line">|</li>
+						<li>帮助中心</li>
+						<li class="right-line">|</li>
+						<li>友情链接</li>
+						<li class="right-line">|</li>
+						<li>手机客户端</li>
+						<li>客服在线</li>
+						<li class="right-line">|</li>
+						<li>贝贝公益</li>
+						<li class="right-line">|</li>
+						<li>品质健康</li>
+						<li class="right-line">|</li>
+						<li>育儿社区</li>
+					</ul>
+					
+				</div>
+			</div>
+			
+			
+			<div id="footer3">
+						<div class="container">
+							<p>
+							浙ICP备14025287号 |
+                    食品流通许可证：SP3301041510054925 |
+                    出版物经营许可证：新出发零字第00086号
+						</p>
+						<p>
+							© 2014-2018 
+							杭州贝购科技有限公司 
+							All Rights Reserved. 客服热线：0571-10107788
+						</p>
+				  </div>
+	</body>
+</html>

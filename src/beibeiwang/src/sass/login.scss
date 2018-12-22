@@ -1,0 +1,362 @@
+@charset "UTF-8";
+.regtop{
+    .container{
+        padding-top: 45px;
+        overflow: hidden;
+    }
+    
+}
+
+.kehuduan{
+    
+   .container{
+       padding: 110px 0px;
+       overflow: hidden;
+       
+      .datu{
+        width: 500px;
+        height: 354px;
+        background: no-repeat url(../img/datu.png);
+        position: relative;
+        left: 50px;
+      } 
+      
+      //右侧开始
+      .regright{
+        color: #666;
+        width: 400px;
+        border: 1px solid #ececec;
+        border-top: 2px solid #ff4965;  
+        
+          .regright1{
+              padding: 50px 35px;
+            .title{
+                font-size: 14px;
+                color: #000;
+                font-weight: 700;
+                margin-bottom: 30px;
+                .title1{
+                    font-size: 12px;
+                    font-weight: 400;
+                    color: #666;
+                    .denglu{
+                        color: #ff4965;
+                        cursor: pointer;
+                    }
+                }
+            
+            }  
+            //手机号开始
+              .phone{
+              margin-top: 15px;
+             .phone1{
+                 display: block;
+                border: 1px solid #e6e6e6;
+                border-radius: 2px;
+                padding-left: 30px;
+                position: relative;
+                .ren{
+                    left: 8px;
+                    top: 8px;
+                    border-right: 1px solid #e6e6e6;
+                    padding-right: 7px;
+                    position: absolute;
+                    background-image: url(../img/regbeijing.jpg);
+                    background-repeat: no-repeat;
+                    background-position: 0 0;
+                    width: 14px;
+                    height: 14px;
+                    line-height: 30px;
+                    color: #fff;
+                    text-align: center;
+                }
+                .phonenum{
+                    height: 30px;
+                    font-size: 12px;
+                    width: 278px;
+                    color: #666;
+                    line-height: 30px;
+                    border: 0;
+                    outline: 0;
+                    padding: 0 10px;
+                    background: 0 0;
+                    position: relative;
+                    
+                }
+             }
+          }
+            //手机结束
+              
+              //滑动开始
+             #outer {
+                 margin-top:15px ;
+                position: relative;
+                width: 100%;
+                height: 30px;
+                line-height: 28px;
+                border: 1px solid #ccc;
+                background: #ccc9c9;
+                font-size: 12px;
+                float: left;
+                box-sizing: border-box;
+            }
+            
+            #outer * {
+                box-sizing: border-box;
+            }
+            
+            
+            #outer .flex_box {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 0px;
+                height: 100%;
+                background: green;
+                z-index: 9;
+            }
+            
+            #outer span {
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: block;
+                padding: 0 0 0 36px;
+                width: 100%;
+                height: 100%;
+                color: #fff;
+                text-align: center;
+            }
+            
+            #outer .pass {
+                z-index: 100;
+                padding: 0;
+            }
+            
+            .txtRoll {
+                background-image: linear-gradient(to right, black, black, white, black, black, white, black);
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+                -webkit-background-size: 200% 100%;
+                animation: mymove 3s infinite linear;
+                /*user-select: none;*/
+                -webkit-user-select: none;
+            }
+            
+            @keyframes mymove {
+                from {
+                    background-position: 0 0;
+                }
+                to {
+                    background-position: -100% 0;
+                }
+            }
+            
+            #outer .inner {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 36px;
+                height: 28px;
+                text-align: center;
+                background: #fff;
+                cursor: pointer;
+                font-family: 宋体;
+                z-index: 10;
+                font-weight: 700;
+                color: #929292;
+            }
+            
+              
+              //滑动结束
+            //密码
+              .mima{
+                  margin-top:15px;
+                  .mima1{
+                      display: block;
+                        border: 1px solid #e6e6e6;
+                        border-radius: 2px;
+                        padding-left: 30px;
+                        position: relative;
+                        color: #666;
+                        height: 30px;
+                        .mima-tu1{
+                          background-position: 0 -47px;
+                          left: 8px;
+                            top: 8px;
+                            border-right: 1px solid #e6e6e6;
+                            padding-right: 7px;  
+                            position: absolute;
+                            background-image: url(../img/regbeijing.jpg);
+                            background-repeat: no-repeat;
+                            top: 8px;
+                            width: 14px;
+                            height: 14px;
+                            line-height: 30px;
+                            color: #fff;
+                            text-align: center;
+                        }
+                        .pass{
+                            height: 30px;
+                            font-size: 12px;
+                            width: 278px;
+                            color: #666;
+                            line-height: 30px;
+                            border: 0;
+                            outline: 0;
+                            padding: 0 10px;
+                            background: 0 0;
+                            position: relative;
+                        }
+                       .mima2{
+                            cursor: pointer;
+                            top: 10px;
+                            right: 8px;
+                            background-position: 0 -66px;
+                            position: absolute;
+                            background-image: url(../img/regbeijing.jpg);
+                            background-repeat: no-repeat;
+                            top: 8px;
+                            width: 14px;
+                            height: 14px;
+                            line-height: 30px;
+                            color: #fff;
+                            text-align: center;
+                       } 
+                  }
+              }
+              
+              
+              //密码结束
+              .forget{
+                  margin-top:60px ;
+                  height: 18px;
+                  color: #666;
+                 font-size:12px ;
+                  
+              }
+              
+              //登录开始
+              .login{
+                    margin-top: 15px;
+                    color: #fff;
+                    background: #ff4965;
+                      display: block;
+                    height: 32px;
+                    line-height: 32px;
+                    border-radius: 3px;
+                    text-align: center;
+                    font-size: 14px;
+                    letter-spacing: 6px;
+                    cursor: pointer;
+                    
+              }
+              
+              //登录结束
+              .ipt-tip{
+                  color:  #666;
+                  margin-top: 15px;
+                  font-size:12px;
+                  .xieyi{
+                      color:#ff4965;
+                  }
+              }
+             .ip-quckly{
+                 overflow: hidden;
+                height: 24px;
+                line-height: 24px;
+                margin-top:15px;
+                color: #666;
+                font-size:12px;
+                position: relative;
+                .qq:hover{
+                    opacity: 1;
+                }
+                .qq{
+                    background: url(../img/qqtbwx.png);
+                    background-position: 1px 0;
+                    width: 25px;
+                    height: 24px;
+                    margin: 0 4px;
+                    background-repeat: no-repeat;
+                    position: absolute;
+                    float: left;
+                    cursor: pointer;
+                    opacity: 0.6;
+                }
+                .taobao:hover{
+                    opacity: 1;
+                }
+                .taobao{
+                  background: url(../img/qqtbwx.png);
+                    background-position: -59px 0;
+                    width: 25px;
+                    height: 24px;
+                    margin: 0 4px;
+                    background-repeat: no-repeat;
+                    position: absolute;  
+                    float: left;
+                    left: 116px;
+                     cursor: pointer;
+                    opacity: 0.6;
+                }
+                .weixin:hover{
+                    opacity: 1;
+                }
+                .weixin{
+                    background: url(../img/qqtbwx.png);
+                        background-position: -119px 0;
+                    width: 25px;
+                    height: 24px;
+                    margin: 0 4px;
+                    background-repeat: no-repeat;
+                    position: absolute;  
+                    float: left;
+                     cursor: pointer;
+                    opacity: 0.6;
+                    left: 150px;
+                }
+             }
+          }  
+      }
+      
+      
+      //右侧结束
+   } 
+   
+    
+} 
+.footer2{
+    border-top: 3px solid #ff5482;
+    background: #555;
+    color: #ddd; 
+    height: 41px;
+    ul{
+        height: 41px;
+        
+        width: 100%;
+        li{
+            float: left;
+            color: #FFFFFF;
+            text-align: center;
+            font-size:12px ;
+            line-height: 41px;
+            margin: 0 9px;
+        }
+       
+    } 
+}
+
+#footer3{
+            width: 100%;
+            background: #fff;
+            padding: 20px 0 40px;
+            
+            p{
+                text-align: center;
+                color: #999;
+                margin-top:8px;
+                font-size:12px ;
+        }
+ 
+}
