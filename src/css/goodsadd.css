@@ -1,0 +1,51 @@
+.main { width: 1115px; }
+.main .m_body { height: auto; }
+.main .m_body .contain { padding: 30px 0 0 30px; }
+.main .m_body .contain ul { display: inline-block; }
+.main .m_body .contain ul li label { width: 80px; float: left; text-align: right; line-height: 38px; font-size: 16px; color: #333; }
+.main .m_body .contain ul li span.inp { height: 38px; margin-left: 20px; line-height: 33px; border-radius: 2px; text-align: center; display: inline-block; border: 1px solid #cccccc; }
+.main .m_body .contain ul li span.inp input[type="text"] { height: 25px; font-size: 14px; }
+.main .m_body .contain ul li.goods-mame span.inp, .main .m_body .contain ul li.goods-subhead span.inp { width: 518px; }
+.main .m_body .contain ul li.goods-mame span.inp input[type="text"], .main .m_body .contain ul li.goods-subhead span.inp input[type="text"] { width: 502px; }
+.main .m_body .contain ul li.goods-mame span.inp input[type="text"]::-webkit-input-placeholder, .main .m_body .contain ul li.goods-subhead span.inp input[type="text"]::-webkit-input-placeholder { color: #999999; }
+.main .m_body .contain ul li.goods-mame span:last-child, .main .m_body .contain ul li.goods-subhead span:last-child { font-size: 12px; }
+.main .m_body .contain ul li.goods-price p.price { display: inline-block; }
+.main .m_body .contain ul li.goods-price p.price span.inp { width: 160px; }
+.main .m_body .contain ul li.goods-price p.price span.inp input[type="text"] { width: 149px; }
+.main .m_body .contain ul li.goods-price p:last-child { float: right; margin-right: 92px; }
+.main .m_body .contain ul li.goods-category span { height: 38px; width: 518px; margin-left: 20px; line-height: 38px; position: relative; display: inline-block; border: 1px solid #cccccc; }
+.main .m_body .contain ul li.goods-category span i.txt { color: #333; margin-left: 10px; }
+.main .m_body .contain ul li.goods-category span i.icon { display: inline-block; width: 16px; height: 16px; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background-image: url(../assets/images/goodslist/drop_menu.png); }
+.main .m_body .contain ul li.goods-category span div.dropdown { display: none; position: absolute; z-index: 2; left: -1px; width: 518px; border-radius: 2px; background-color: #fff; border: 1px solid #c9c9c9; }
+.main .m_body .contain ul li.goods-category span div.dropdown a { color: #333; display: block; height: 38px; padding-left: 10px; line-height: 38px; text-decoration: none; }
+.main .m_body .contain ul li.goods-category span div.dropdown a:hover { background-color: #f2f2f2; }
+.main .m_body .contain ul li.goods-images { margin-top: 20px; }
+.main .m_body .contain ul li.goods-images label { margin-right: 20px; }
+.main .m_body .contain ul li.goods-images div.img-wrap { display: inline-block; }
+.main .m_body .contain ul li.goods-images div.img-wrap figure { margin-right: 65px; display: inline-block; }
+.main .m_body .contain ul li.goods-images div.img-wrap figure figcaption { text-align: center; }
+.main .m_body .contain ul li.goods-images div.img-wrap div.add-file { vertical-align: top; display: inline-block; position: relative; cursor: pointer; }
+.main .m_body .contain ul li.goods-images div.img-wrap div.add-file span { font-size: 60px; color: #999999; top: 50%; left: 50%; transform: translate(-50%, -50%); position: absolute; }
+.main .m_body .contain ul li.goods-stock { margin-bottom: 20px; }
+.main .m_body .contain ul li.goods-property label { margin-right: 20px; }
+.main .m_body .contain ul li.goods-property div.prop-wrap { display: inline-block; }
+.main .m_body .contain ul li.goods-property div.prop-wrap span { width: 80px; height: 30px; color: #fff; margin-right: 30px; position: relative; display: inline-block; background-color: #e4e4e4; border: 1px solid #e4e4e4; border-radius: 2px; }
+.main .m_body .contain ul li.goods-property div.prop-wrap span i.icon { top: 50%; transform: translateY(-50%); right: 0; width: 34px; height: 30px; position: absolute; display: inline-block; background-image: url(../assets/images/goodsadd/noc-bg.png); }
+.main .m_body .contain ul li.goods-property div.prop-wrap span.check { background-color: #5fb878; border-color: #5fb878; }
+.main .m_body .contain ul li.goods-property div.prop-wrap span.check i { height: 28px; border-radius: 2px; background: url(../assets/images/goodsadd/check.png) no-repeat center #fff; }
+.main .m_body .contain ul li.goods-property div.prop-wrap span.mouseOver i { height: 28px; border-radius: 2px; background: url(../assets/images/goodsadd/nocheck.png) no-repeat center #fff; }
+.main .m_body .contain ul li.goods-stores { line-height: 47px; margin-top: 20px; }
+.main .m_body .contain ul li.goods-stores label { margin-right: 20px; }
+.main .m_body .contain ul li.goods-stores div.on-off { cursor: pointer; display: inline-block; }
+.main .m_body .contain ul li.goods-stores div.on-off div { position: relative; width: 54px; height: 24px; border: 1px solid #d2d2d2; border-radius: 20px; }
+.main .m_body .contain ul li.goods-stores div.on-off div span { position: absolute; transition: all 0.5s; }
+.main .m_body .contain ul li.goods-stores div.on-off div span.point { top: 3px; left: 2px; width: 16px; height: 16px; border-radius: 20px; display: inline-block; background-color: #d2d2d2; }
+.main .m_body .contain ul li.goods-stores div.on-off div span.switch { right: 5px; line-height: 22px; font-size: 12px; }
+.main .m_body .contain ul li.goods-stores div.on-off div.on { background-color: #5fb878; }
+.main .m_body .contain ul li.goods-stores div.on-off div.on span.point { left: 34px; background-color: #fff; }
+.main .m_body .contain ul li.goods-stores div.on-off div.on span.switch { left: 5px; color: #fff; }
+.main .m_body .contain ul li.goods-describe label { margin-right: 20px; }
+.main .m_body .contain ul li.commit { text-align: center; }
+.main .m_body .contain ul li.commit p.btn-commit { margin-top: 20px; margin-left: 100px; cursor: pointer; width: 114px; height: 44px; color: #fff; font-size: 18px; text-align: center; line-height: 44px; border-radius: 2px; background-image: url(../assets/images/goodsadd/btn-commit.png); }
+
+/*# sourceMappingURL=goodsadd.css.map */

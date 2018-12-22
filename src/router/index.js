@@ -1,4 +1,4 @@
-//把路由封装成模块。
+﻿//把路由封装成模块。
 const express=require('express');
 //引入单独路由模块。
 const loginRouter = require('./login1')//引入登录的后台
@@ -30,12 +30,12 @@ Router.use('/login1',loginRouter);
 //关于添加用户的路由
 Router.use('/adduser',adduserRouter);
 
-
 //关于用户列表的路由
 Router.use('/userslist',userslistRouter);
 
 //贝贝网首页的路由
 Router.use('/bbhome', bbhoemRouter);
 
+Router.use("/goods",goodsRouter);
 
 module.exports=Router;

@@ -1,0 +1,276 @@
+.main{
+    width: 1115px;
+    .m_body{
+        height: auto;
+        .contain{
+            padding: 30px 0 0 30px;
+            ul{
+                // position: relative;
+                display: inline-block;
+                li {
+                    label{
+                        width: 80px;
+                        float: left;
+                        text-align: right;
+                        line-height: 38px;
+                        font-size: 16px;
+                        color: #333;
+                        // vertical-align: middle;
+                    }
+                    span.inp{
+                        height: 38px;
+                        margin-left: 20px;
+                        line-height: 33px;
+                        border-radius: 2px;
+                        text-align: center;
+                        display: inline-block;
+                        border: 1px solid rgba(204, 204, 204, 1);
+                        input[type="text"]{                          
+                            height: 25px;   
+                            font-size: 14px;                                                                      
+                        }
+                    }
+                }
+                li.goods-mame,
+                li.goods-subhead{                   
+                    span.inp{                        
+                        width: 518px;                                              
+                        input[type="text"]{
+                            width: 502px;                           
+                            &::-webkit-input-placeholder{
+                               color: rgb(153, 153, 153);
+                            }                 
+                        }
+                    }
+                    span:last-child{
+                        font-size: 12px;
+                    }
+                }
+                li.goods-price{
+                    p.price{
+                        display: inline-block;
+                        span.inp{
+                            width: 160px;
+                            input[type="text"]{                          
+                                width: 149px;                                                                  
+                            }
+                        }                                              
+                    }
+                    p:last-child{
+                        float: right;
+                        margin-right: 92px;
+                    }
+                }
+                li.goods-category{
+                    span{
+                        height: 38px;
+                        width: 518px; 
+                        margin-left: 20px;
+                        line-height: 38px;
+                        // padding-left:10px; 
+                        position: relative;
+                        display: inline-block;
+                        border: 1px solid rgba(204, 204, 204, 1);
+                        i.txt{
+                            color: #333;
+                            margin-left: 10px; 
+                        }
+                        i.icon{
+                            display: inline-block;
+                            width: 16px;
+                            height: 16px;
+                            position: absolute;
+                            right: 20px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            background-image: url(../assets/images/goodslist/drop_menu.png);
+                        }
+                        div.dropdown{
+                            // margin-top: 10px;
+                            display: none;
+                            position: absolute;
+                            z-index: 2;
+                            left: -1px;
+                            width: 518px; 
+                           
+                            border-radius: 2px;
+                            background-color: #fff; 
+                            border: 1px solid rgba(201, 201, 201, 1);
+                            a{
+                                color: #333;
+                                display: block;
+                                height: 38px;
+                                padding-left: 10px; 
+                                line-height: 38px;
+                                text-decoration: none;
+                                &:hover{
+                                    background-color: #f2f2f2;
+                                }
+                            }
+                        }
+                    }
+                }
+                li.goods-images{
+                    margin-top: 20px;
+                    label{
+                        margin-right: 20px;                   
+                    }
+                    div.img-wrap{
+                        display: inline-block;                       
+                        figure{
+                            margin-right: 65px;
+                            display: inline-block;
+                            figcaption{
+                                text-align: center;
+                            }
+                        }
+                        div.add-file{
+                            vertical-align: top;
+                            display: inline-block;
+                            position: relative;
+                            cursor: pointer;
+                            span{
+                                // display: block;
+                                font-size: 60px;
+                                color: #999999;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%,-50%);
+                                position: absolute;
+                            }
+                        }
+                    }
+                    
+                }
+                li.goods-stock{
+                    margin-bottom: 20px;
+                }
+                li.goods-property{
+                    
+                    label{
+                        margin-right: 20px;
+                    }
+                    div.prop-wrap{
+                        display: inline-block;
+                        span{
+                            width: 80px;
+                            height: 30px;
+                            color: #fff;
+                            margin-right: 30px;
+                            position: relative;                          
+                            display: inline-block;
+                            background-color: rgba(228, 228, 228, 1);
+                            border: 1px solid rgba(228, 228, 228, 1);
+                            border-radius: 2px;
+                            i.icon{    
+                                top: 50%;
+                                transform: translateY(-50%);
+                                right: 0;                          
+                                width: 34px;
+                                height: 30px;
+                                position: absolute;                        
+                                display: inline-block;
+                                background-image: url(../assets/images/goodsadd/noc-bg.png); 
+                            }
+                        }
+                        span.check{
+                            background-color: rgba(95, 184, 120, 1);
+                            border-color: rgba(95, 184, 120, 1);
+                            i{
+                                height: 28px;       
+                                border-radius: 2px;           
+                                background: url(../assets/images/goodsadd/check.png) no-repeat center #fff; 
+                            }
+                        }
+                        span.mouseOver{
+                            
+                            i{        
+                                height: 28px;       
+                                border-radius: 2px;           
+                                background: url(../assets/images/goodsadd/nocheck.png) no-repeat center #fff;
+                                // background-position: 50%,50%; 
+                                // background-color: #fff;  
+                            }
+                        }
+                    } 
+                }
+                li.goods-stores{
+                    line-height: 47px;
+                    margin-top: 20px;
+                    label{
+                        margin-right: 20px;
+                        
+                    }
+                    div.on-off{
+                        cursor: pointer;
+                        // line-height: 53px;
+                        display: inline-block;
+                        div{
+                            position: relative;
+                            width: 54px;
+                            height: 24px;
+                            border: 1px solid rgba(210, 210, 210, 1);
+                            border-radius: 20px;
+                            // text-align: center;
+                            // line-height: 24px;
+                            span{
+                                position: absolute;
+                                transition: all 0.5s;
+                            }
+                            span.point{
+                                top: 3px;
+                                left: 2px;                               
+                                width: 16px;
+                                height: 16px;
+                                border-radius: 20px;
+                                display: inline-block;
+                                background-color: rgba(210, 210, 210, 1);
+                            }
+                            span.switch{
+                                right: 5px;
+                                line-height: 22px;
+                                font-size: 12px;
+                            }
+
+                        }
+                        // div.on,div.off{
+                        //     display: inline-block;
+                        // }
+                        div.on{
+                            background-color: rgba(95, 184, 120, 1);
+                            span.point{                                
+                                left: 34px;
+                                background-color: #fff;
+                            }
+                            span.switch{
+                                left: 5px;
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+                li.goods-describe{
+                    label{
+                        margin-right: 20px;
+                    }
+                }
+                li.commit{
+                    text-align: center;
+                    p.btn-commit{
+                        margin-top: 20px;
+                        margin-left: 100px;
+                        cursor: pointer;
+                        width: 114px;
+                        height: 44px;
+                        color: #fff;
+                        font-size: 18px;
+                        text-align: center;
+                        line-height: 44px;
+                        border-radius: 2px;
+                        background-image: url(../assets/images/goodsadd/btn-commit.png);
+                    }
+                }
+            }
+        }
+    }
+}

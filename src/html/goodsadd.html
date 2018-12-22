@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../assets/bootstrap-4.0.0/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/goodsadd.css">
+    <script src="../assets/jquery-3.2.1.js"></script>
+    <script src="../assets/bootstrap-4.0.0/dist/js/bootstrap.js"></script>
+    <title>商品添加</title>
+    <script>
+        // document.addEventListener("DOMContentLoaded",()=>{
+            $(()=>{
+                // 侧边栏菜单
+                //多个选择器绑定不同事件
+                $(".menu .hover,.tables dd span,.tables dd li,li span.tri i,li.goods-property .prop-wrap span").on({
+                    mouseenter:function(){
+                        $(this).addClass("mouseOver");
+                    },
+                    mouseleave:function(){
+                        $(this).removeClass("mouseOver");
+                    }
+                });   
+            //页码跳转
+            $(".pageWrape .pagination li.p-item").click(function(){
+                $("li.p-item").removeClass("active");
+                $(this).addClass("active");
+            });
+
+            //商品分类下拉菜单
+            $(".contain li.goods-category span").click(function(){
+                $("li.goods-category span .dropdown").slideToggle("fast");
+            });
+            $("li.goods-category span .dropdown").on("click","a",function(){
+                $("li.goods-category span .txt").html($(this).html());
+            });
+
+            //确认商品属性
+            $("li.goods-property .prop-wrap span").click(function(){
+                if($(this).hasClass("checkbox")){
+                    $(this).addClass("check");
+                    $(this).removeClass("checkbox");
+                }else{
+                    $(this).removeClass("check");
+                    $(this).addClass("checkbox");
+                }  
+            });
+
+            //上架
+            $("li.goods-stores .on-off").click(function(){
+                $(this).children().toggleClass("on");
+                if($(this).children().hasClass("on")){
+                    $(this).find("span.switch").html("ON");
+                }else{
+                    $(this).find("span.switch").html("OFF");
+                }
+                
+            });
+        })
+    </script>
+</head>
+<body class="clearfix">
+    <!-- 左边的侧边栏 -->
+    <div class="aside fl">
+            <!-- 侧边栏标题 -->
+            <div class="title">
+                <img src="../assets/images/goodslist/logo.png">
+                <span>后台管理系统</span>
+            </div>
+            <!-- 侧边栏菜单 -->
+            <div class="menu">
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="card-header hover" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        商品管理
+                                    </button>
+                                </h5>
+                            </div>
+                        
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body">
+                                    <ul>
+                                        <li class="hover">
+                                            <a href="./goodslist.html">商品列表</a>
+                                        </li>
+                                        <li class="hover">
+                                            <a href="./goodscategory.html">商品分类</a>
+                                        </li>
+                                        <li class="hover">
+                                            <a href="./goodsadd.html">添加商品</a>                               
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header hover" id="headingTwo">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        用户管理
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                                    <ul>
+                                        <li class="hover">
+                                            <a href="./goodslist.html">用户列表</a>                                   
+                                        </li>
+                                        <li class="hover">
+                                            <a href="./goodslist.html">添加用户</a>
+                                        </li>
+                                    </ul>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header hover" id="headingThree">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        订单管理
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                <div class="card-body">
+                                    <ul>
+                                        <li class="hover">
+                                            <a href="./goodslist.html">订单列表</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+    <!-- 右边的主体部分 -->
+    <div class="main fl">
+        <!-- 导航头部 -->
+        <!-- 导航头部 -->
+        <div class="m_head">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">首页</a></li>
+                    <li class="breadcrumb-item"><a href="#">商品管理</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <a href="#">商品添加</a>
+                    </li>
+                    
+                </ol>
+                <a href="#" class="fr">退出</a>
+            </nav>
+        </div>
+        <!-- 主体内容 -->
+        <div class="m_body">
+            <div class="contain">
+                <ul>
+                    <!-- ul设置成display:inline-block 由子元素撑开其宽度 -->
+                    <li class="goods-mame">
+                        <p class="name">
+                            <label for="">商品名称</label>
+                            <!-- <span class="tip">商品名称</span> -->
+                            <span class="inp">
+                                <input type="text" placeholder="请输入名称">
+                            </span>                          
+                            <span>50字以内</span>
+                        </p>
+                    </li>
+                    <li class="goods-subhead">
+                        <p class="subhead">
+                            <label for="">商品副标题</label>
+                            <!-- <span class="tip">商品副标题</span> -->
+                            <span class="inp">
+                                <input type="text" placeholder="请输入副标题">
+                            </span>                          
+                            <span>100字以内</span>
+                        </p>
+                    </li>
+                    <li class="goods-price">
+                        <p class="price">
+                            <label for="">商品价格</label>                            
+                            <span class="inp">
+                                <input type="text" placeholder="">
+                            </span>                                                     
+                        </p>
+                        <p class="price">
+                            <label for="">销售价格</label>                            
+                            <span class="inp">
+                                <input type="text" placeholder="">
+                            </span>                                                     
+                        </p>
+                    </li>
+                    <li class="goods-category">                       
+                        <label for="">商品分类</label>
+                        <span class="">
+                            <i class="txt">请选择</i>
+                            <i class="icon"></i>
+                            <div class="dropdown">
+                                <a href="#">手机</a>
+                                <a href="#">电脑</a>
+                                <a href="#">配件</a>
+                                <a href="#">其他</a>
+                            </div>
+                        </span>                          
+                                               
+                    </li>
+                    <li class="goods-images clearfix">
+                        <label for="">商品图片</label>
+                        <div class="img-wrap">
+                            <figure>
+                                <img src="../assets/images/goodsadd/img.png" alt="">
+                                <figcaption>
+                                    <input type="radio">设为封面
+                                </figcaption>
+                            </figure>
+                            <figure>
+                                <img src="../assets/images/goodsadd/img.png" alt="">
+                                <figcaption>
+                                    <input type="radio">设为封面
+                                </figcaption>
+                            </figure>
+                            <figure>
+                                <img src="../assets/images/goodsadd/img.png" alt="">
+                                <figcaption>
+                                    <input type="radio">设为封面
+                                </figcaption>
+                            </figure>
+                            <div class="add-file">
+                                <img src="../assets/images/goodsadd/filesadd.png" alt="">
+                                <span>+</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="goods-stock clearfix">
+                        <label for="">商品库存</label>
+                        <span class="inp">
+                            <input type="text">
+                        </span>
+                    </li>
+                    <li class="goods-property clearfix">
+                        <label for="">商品属性</label>
+                        <div class="prop-wrap">
+                            <!-- <input type="checkbox" name="" id=""> -->
+                            <span class="hot checkbox">
+                                热卖
+                                <i class="icon"></i>
+                            </span>
+                            <span class="rec checkbox">
+                                推荐
+                                <i class="icon"></i>
+                            </span>
+                            <span class="pro checkbox">
+                                促销
+                                <i class="icon"></i>
+                            </span>
+                        </div>
+                    </li>
+                    <li class="goods-stores clearfix">
+                        <label for="">上架</label>
+                        <div class="on-off">
+                            <div class="">
+                                <span class="point"></span>
+                                <span class="switch">OFF</span>
+                            </div>
+                            <!-- <div class="on">on</div> -->
+                        </div>
+                    </li>
+                    <li class="goods-describe clearfix">
+                        <label for="">商品描述</label>
+                        <div class="description">
+                            <textarea name="" id="" cols="60" rows="6"></textarea>
+                        </div>
+                    </li>
+                    <li class="commit">
+                        <p class="btn-commit">确认</p>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

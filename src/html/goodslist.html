@@ -6,32 +6,336 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../assets/bootstrap-4.0.0/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/goodslist.css">
     <script src="../assets/jquery-3.2.1.js"></script>
     <script src="../assets/bootstrap-4.0.0/dist/js/bootstrap.js"></script>
+    
     <title>商品列表</title>
     <script>
         // document.addEventListener("DOMContentLoaded",()=>{
-        //    (function(){
-            $(()=>{
+        $(()=>{
+            let table = document.querySelector("dl.tables .dd-wrape");
+            let pageWrape = document.querySelector(".pageWrape");
+            let page_more = pageWrape.querySelector(".option-wrape");
+            let pag = pageWrape.querySelector("ul.pagination");
+            let pAmount = pageWrape.querySelector("span.p-amount i.amount");
+            function motion(){
                 // 侧边栏菜单
                 //多个选择器绑定不同事件
-                $(".menu .hover,.table dd span,.table dd li,li span.tri i").on({
+                $(".menu .hover,.tables dd span,.tables dd li,li span.tri i").on({
                     mouseenter:function(){
                         $(this).addClass("mouseOver");
                     },
                     mouseleave:function(){
                         $(this).removeClass("mouseOver");
                     }
+                });   
+                
+                //页面商品排序
+                let number = table.querySelectorAll("dd li.gid span");
+                // console.log(number);
+                for(let i=0;i<number.length;i++){
+                    number[i].innerHTML = i+1;
+                }
+                
+                //移除商品
+                $('.delete').click(function () {
+                    $goodsItem = $(this).parents("dd");
+                    // console.log( $(this).parents("dd"));
+                    $('.model_bg').fadeIn(300);
+                    $('.my_model').fadeIn(300);
                 });
-        //    })();    
+
+                //关闭模态框
+                $('.closeModel').click(function () {
+                    closeM();
+                });
+                $('.dialog-close').click(function () {
+                    closeM();
+                });
+                function closeM() {
+                    $('.model_bg').fadeOut(300);
+                    $('.my_model').fadeOut(300);
+                }
+                //确定按钮，移除商品
+                $('.dialog-sure').click(function () {
+                    // $order_lists.remove();
+                    let _id = $goodsItem.attr("data-id");
+                //    console.log(_id);
+                   closeM();
+                   deleteGoods(_id);
+                });
+            }
             
-            //页码跳转
-            $(".pageWrape .pagination li.p-item").click(function(){
-                $("li.p-item").removeClass("active");
-                $(this).addClass("active");
+            //删除数据
+            function deleteGoods(_id){
+                let xhr = new XMLHttpRequest();
+                xhr.open("delete",`/goods`,true);//连接路由
+                xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+                xhr.send(`_id=${_id}`);
+                xhr.onload = ()=>{
+                    if(xhr.status == 200){
+                        let data = JSON.parse(xhr.responseText);
+                        console.log(data);
+                    }
+                } 
+            }
+
+            //请求数据
+            let page = 1;
+            let qty = 2;
+            let mthod = "";
+            let flag = false;
+            let category = "";
+            getGoodslist(category,page,qty,mthod,flag);
+            function getGoodslist(category,page,qty,mthod,flag){
+                let xhr = new XMLHttpRequest();
+                xhr.open("get",`/goods?category=${category}&mth=${mthod}&flag=${flag}&page=${page}&qty=${qty}`,true);//连接路由
+                xhr.send();
+                xhr.onload = ()=>{
+                    if(xhr.status == 200){
+                        let res = JSON.parse(xhr.responseText);
+                        // console.log(res);
+                        createPage(res.sum.data,page-1);
+                        createList(res.data.data);
+                        motion(); 
+                        check();  
+                    }
+                }
+            }
+             
+            //选中复选框-->删除
+            $(".navbar-nav li.delete").click(function(){
+                // console.log($('.soncheck')); //单选按钮
+                let _id = [];
+                $('.soncheck').each(function(){
+                    if($(this).is(":checked")){
+                        _id.push($(this).parents("dd").attr("data-id"));
+                        
+                    }
+                })
+                console.log(_id);
+                deleteGoods(_id);
+            });
+            function checkDel(){
+
+            }
+            //全选、单选
+            function check(){
+                let $wholecheck = $('.wholecheck'),//全选按钮
+                    $soncheck = $('.soncheck'); //单选按钮
+                $wholecheck.click(function(){
+                    if($(this).is(':checked')){
+                        $soncheck.prop("checked",true);
+                        // deleteGoods(_id);//全选删除
+                    }else{
+                        $soncheck.prop("checked",false);
+                    }
+                });
+                
+                $soncheck.each(function () {
+                    $(this).click(function () {
+                        if ($(this).is(':checked')) {
+                            //判断：所有单个商品是否勾选
+                            var len = $soncheck.length;
+                            var num = 0;
+                            $soncheck.each(function () {
+                                if ($(this).is(':checked')) {
+                                    num++;
+                                }
+                            });
+                            if (num == len) {
+                                $wholecheck.prop("checked", true);
+                            }
+                        } else {
+                            //单个商品取消勾选，全局全选取消勾选
+                            $wholecheck.prop("checked", false);
+                        }
+                    })
+                })
+            }
+
+            //渲染所有商品的数据
+            function createList(data){
+                // console.log(data);
+                let len = data.length;
+                let str = ``;
+                for(let i=0;i<len;i++){
+                    str += `<dd data-gid=${data[i].gid} data-id=${data[i]._id}>
+                            <ul>
+                                <li class="check">
+                                    <input type="checkbox" class="soncheck">
+                                </li>
+                                <li class="gid"><span></span></li>
+                                <li class="name">
+                                    <span class="item">${data[i].name}</span>
+                                </li>
+                                <li class="classify">
+                                    <span class="item">${data[i].category}</span>
+    
+                                </li>
+                                <li class="original">
+                                    <span class="item">${data[i].o_price}</span>
+    
+                                </li>
+                                <li class="present">
+                                    <span class="item">${data[i].c_price}</span>
+    
+                                </li>
+                                <li class="stock">
+                                    <span class="item">${data[i].stock}</span>
+    
+                                </li>
+                                <li class="status">
+                                    <span class="item">${data[i].status}</span>
+                                </li>
+                                <li class="time">
+                                    <span class="item">${data[i].create_time}</span>
+                                </li>
+                                <li class="handle">
+                                    <!-- <span class="out">下架</span> -->
+                                    <span class="edit"><img src="../assets/images/goodslist/pen.png" alt="编辑"></span>
+                                    <span class="delete"><img src="../assets/images/goodslist/cancel-icon.png" alt="删除"></span>
+                                    <span class="out">下架</span>
+                                </li>
+                            </ul>
+                        </dd>`;
+                }
+                table.innerHTML = str;
+            }
+            
+            //选择分类并获取之
+            $("li .dropdown-menu").on("click","a",function(){
+                let target = $(this).parents("li.dropdown").find("a#navbarDropdown");
+                target.html($(this).html());
+                // console.log($(this).attr("data-value"));
+                category = $(this).attr("data-value");
+                getGoodslist(category,page,qty,mthod,flag);
             });
 
+            //点击页码
+            $(".pageWrape .pagination").on("click",".p-item .p-link",function(){
+                    page = $(this).html();
+                    // console.log(page);
+                    // $("li.p-item").removeClass("active");
+                    // $(this).parent().addClass("active");
+                    getGoodslist(category,page,qty,mthod,flag);
+                });
+           
+            //点击确定按钮跳转
+            $(".option-wrape").on("click", ".confirm", function() {
+                let num = $(this).parents(".p-skip").find(".aim").val();
+                let mixPage = $("ul.pagination li:last-child").prev().children().html();
+                if(num && num >= 0 && num <= mixPage) {
+                    page = num;
+                    getGoodslist(category,page,qty,mthod,flag);
+                }
+            });
+
+            //设置每页的数据条数并获取之
+            function changePage(){
+                $(".p-option #changPage").on("change",function(){
+                    page = 1;
+                    qty = $(this).find("option:selected").val();
+                    // console.log("qty",qty);
+                    getGoodslist(category,page,qty,mthod,flag);
+                });
+            }
+
+            //点击排序
+            $(".tableWrape dl dt li.rank i").click(function() {
+                if($(this).hasClass("up")){
+                    flag = true;
+                }
+                if($(this).hasClass("drown")){
+                    flag = false;
+                }
+                if($(this).parents("li").hasClass("original")){
+                    mthod = "o_price"; 
+                }
+                if($(this).parents("li").hasClass("present")){
+                    mthod = "c_price"; 
+                }
+                if($(this).parents("li").hasClass("stock")){
+                    mthod = "stock";
+                }
+                if($(this).parents("li").hasClass("time")){
+                    mthod = "create_time";
+                }
+                getGoodslist(category,page,qty,mthod,flag); 
+            });
+            
+            //上一页下一页
+            function trunPage(pagIndex, pages) {
+                console.log(pagIndex);
+                if(pagIndex == 0) {
+                    $("ul.pagination li.pre").addClass("disabled");
+                } else if(pagIndex + 1 >= pages) {
+                    $("ul.pagination li.next").addClass("disabled");
+                } else{
+                    $("ul.pagination li").removeClass("disabled");
+                }
+                
+                $("li.pre").click(function() {
+                    if(page > 1) {
+                        page--;
+                        getGoodslist(category,page,qty,mthod,flag);
+                    }
+                });
+                $("li.next").click(function() {
+                    if(page < pages) {
+                        page++;
+                        getGoodslist(category,page,qty,mthod,flag);
+                    }
+                });
+            }
+            
+            //创建页码
+            function createPage(total,pagIndex){
+                // console.log(pagIndex);
+                let len = total.length;
+                pAmount.innerHTML = len;//展示数据总长度
+                let pages = Math.ceil(len/qty);//数据总长度 / 每页数据的长度 = 页码数
+                // console.log(pages);
+                let pStr = ``;
+                for(let i=0;i<pages;i++){
+                    pStr += `<li class="p-item">
+                                <a class="p-link" href="javascript:void(0)">${i+1}</a>
+                            </li>`;
+                }
+                if(pages>=2){//如果页码超过2页,则需要创建上下页、跳转、确认
+                    
+                    pag.innerHTML = `<li class="pre">
+                                        <a class="p-link" href="javascript:void(0)" tabindex="-1">上一页</a>
+                                    </li>
+                                    ${pStr}
+                                    <li class="next">
+                                        <a class="p-link" href="#">下一页</a>
+                                    </li>
+                                    `;
+                    page_more.innerHTML = `
+                                            <div class="p-option fl">
+                                                <select name="" id="changPage">
+                                                    <option value="2">2条/页</option>
+                                                    <option value="4">4条/页</option>
+                                                    <option value="6">6条/页</option>
+                                                    <option value="8">8条/页</option>
+                                                    
+                                                </select>
+                                            </div>
+                                            <div class="p-skip fl">                      
+                                                跳到第<input type="text" class="aim" value="1">页
+                                                <button class="confirm">确定</button>                        
+                                            </div>`;
+                }else{
+                pag.innerHTML = pStr;
+                }
+                changePage();
+                trunPage(pagIndex, pages);//上下页
+                $(".pageWrape li.p-item").eq(pagIndex).addClass("active");
+            }
+                        
         })
     </script>
 </head>
@@ -58,9 +362,15 @@
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
                             <ul>
-                                <li class="hover">商品列表</li>
-                                <li class="hover">商品分类</li>
-                                <li class="hover">添加商品</li>
+                                <li class="hover">
+                                    <a href="./goodslist.html">商品列表</a>
+                                </li>
+                                <li class="hover">
+                                    <a href="./goodscategory.html">商品分类</a>
+                                </li>
+                                <li class="hover">
+                                    <a href="./goodsadd.html">添加商品</a>                               
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -76,8 +386,12 @@
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                     <div class="card-body">
                             <ul>
-                                <li class="hover">用户列表</li>
-                                <li class="hover">添加用户</li>
+                                <li class="hover">
+                                    <a href="./goodslist.html">用户列表</a>                                   
+                                </li>
+                                <li class="hover">
+                                    <a href="./goodslist.html">添加用户</a>
+                                </li>
                             </ul>
                     </div>
                     </div>
@@ -93,7 +407,9 @@
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                         <div class="card-body">
                             <ul>
-                                <li class="hover">订单列表</li>
+                                <li class="hover">
+                                    <a href="./goodslist.html">订单列表</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -134,142 +450,182 @@
                                     </a>
                             </li>
                             
-                            <!-- <li class="nav-item">
-                                <a class="nav-link disabled" href="#">Disabled</a>
-                            </li> -->
+                            
                         </ul>
-                        <!-- <form class="form-inline my-2 my-lg-0"></form> -->
+                       
                             <input class="form-control mr-sm-2" type="search" placeholder="请输入" aria-label="Search">
                             <li class="nav-item dropdown">
                                 <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 请选择分类
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <!-- <div class="dropdown-divider"></div> -->
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <a class="dropdown-item" href="#" data-value="phone">手机</a>
+                                    <a class="dropdown-item" href="#" data-value="computer">电脑</a>
+                                    <a class="dropdown-item" href="#" data-value="">全部</a>
                                 </div>
                             </li>
                             <li class="btn">搜索</li>
-                        <!-- </form> -->
                     </div>
                 </nav>
-                <dl class="table">
-                    <dt>
-                        <ul>
-                            <li class="check">
-                                <input type="checkbox" class="allcheck">
-                            </li>
-                            <li class="gid"><span>#</span></li>
-                            <li class="name">
-                                <span>商品名称</span>
-                            </li>
-                            <li class="classify">
-                                <span>分类</span>
+                <div class="tableWrape">
+                    <dl class="tables">
+                        <dt>
+                            <ul>
+                                <li class="check">
+                                    <input type="checkbox" class="wholecheck">
+                                </li>
+                                <li class="gid"><span>#</span></li>
+                                <li class="name">
+                                    <span>商品名称</span>
+                                </li>
+                                <li class="classify">
+                                    <span>分类</span>
+    
+                                </li>
+                                <li class="rank original">
+                                    <span>原价</span>
+                                    <span class="tri">
+                                        <i class="triangle-up up">
+                                            <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
+                                        </i>
+                                        <i class="triangle-drown drown">
+                                            <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
+                                        </i>
+                                    </span>
+    
+                                </li>
+                                <li class="rank present">
+                                    <span>现价</span>
+                                    <span class="tri">
+                                        <i class="triangle-up up">
+                                            <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
+                                        </i>
+                                        <i class="triangle-drown drown">
+                                            <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
+                                        </i>
+                                    </span>
+    
+                                </li>
+                                <li class="rank stock">
+                                    <span>库存</span>
+                                    <span class="tri">
+                                        <i class="triangle-up up">
+                                            <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
+                                        </i>
+                                        <i class="triangle-drown drown">
+                                            <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
+                                        </i>
+                                    </span>
+    
+                                </li>
+                                <li class="status">
+                                    <span>状态</span>
+                                </li>
+                                <li class="rank time">
+                                    <span>添加时间</span>
+                                    <span class="tri">
+                                        <i class="triangle-up up">
+                                            <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
+                                        </i>
+                                        <i class="triangle-drown drown">
+                                            <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
+                                        </i>
+                                    </span>
+                                </li>
+                                <li class="handle">
+                                    <span>操作</span>
+                                </li>
+                            </ul>
+                        </dt>
+                        <div class="dd-wrape">
+                        <!-- <dd>
+                            <ul>
+                                <li class="check">
+                                    <input type="checkbox" class="allcheck">
+                                </li>
+                                <li class="gid"><span>1</span></li>
+                                <li class="name">
+                                    <span>ipone4</span>
+                                </li>
+                                <li class="classify">
+                                    <span>手机</span>
+    
+                                </li>
+                                <li class="original">
+                                    <span>998</span>
+    
+                                </li>
+                                <li class="present">
+                                    <span>698</span>
+    
+                                </li>
+                                <li class="stock">
+                                    <span>100</span>
+    
+                                </li>
+                                <li class="status">
+                                    <span>上线</span>
+                                </li>
+                                <li class="time">
+                                    <span>2018-11-11</span>
+                                </li>
+                                <li class="handle">
+                                    
+                                    <span class="edit"><img src="../assets/images/goodslist/pen.png" alt="编辑"></span>
+                                    <span class="delete"><img src="../assets/images/goodslist/cancel-icon.png" alt="删除"></span>
+                                    <span class="out">下架</span>
+                                </li>
+                            </ul>
+                        </dd> -->
+                        <!-- <dd>
+                                <ul>
+                                    <li class="check">
+                                        <input type="checkbox" class="allcheck">
+                                    </li>
+                                    <li class="gid"><span>1</span></li>
+                                    <li class="name">
+                                        <span>ipone4</span>
+                                    </li>
+                                    <li class="classify">
+                                        <span>手机</span>
+        
+                                    </li>
+                                    <li class="original">
+                                        <span>998</span>
+        
+                                    </li>
+                                    <li class="present">
+                                        <span>698</span>
+        
+                                    </li>
+                                    <li class="stock">
+                                        <span>100</span>
+        
+                                    </li>
+                                    <li class="status">
+                                        <span>上线</span>
+                                    </li>
+                                    <li class="time">
+                                        <span>2018-11-11</span>
+                                    </li>
+                                    <li class="handle">
+                                        <span class="edit"><img src="../assets/images/goodslist/pen.png" alt="编辑"></span>
+                                        <span class="delete"><img src="../assets/images/goodslist/cancel-icon.png" alt="删除"></span>
+                                        <span class="out">下架</span>
+                                    </li>
+                                </ul>
+                            </dd> -->
+                        </div>
 
-                            </li>
-                            <li class="original">
-                                <span>原价</span>
-                                <span class="tri">
-                                    <i class="triangle-up">
-                                        <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
-                                    </i>
-                                    <i class="triangle-drown">
-                                        <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
-                                    </i>
-                                </span>
-
-                            </li>
-                            <li class="present">
-                                <span>现价</span>
-                                <span class="tri">
-                                    <i class="triangle-up">
-                                        <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
-                                    </i>
-                                    <i class="triangle-drown">
-                                        <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
-                                    </i>
-                                </span>
-
-                            </li>
-                            <li class="stock">
-                                <span>库存</span>
-                                <span class="tri">
-                                    <i class="triangle-up">
-                                        <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
-                                    </i>
-                                    <i class="triangle-drown">
-                                        <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
-                                    </i>
-                                </span>
-
-                            </li>
-                            <li class="status">
-                                <span>状态</span>
-                            </li>
-                            <li class="time">
-                                <span>添加时间</span>
-                                <span class="tri">
-                                    <i class="triangle-up">
-                                        <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
-                                    </i>
-                                    <i class="triangle-drown">
-                                        <!-- <img src="../assets/images/goodslist/triangle.png" alt=""> -->
-                                    </i>
-                                </span>
-                            </li>
-                            <li class="handle">
-                                <span>操作</span>
-                            </li>
-                        </ul>
-                    </dt>
-                    <dd>
-                        <ul>
-                            <li class="check">
-                                <input type="checkbox" class="allcheck">
-                            </li>
-                            <li class="gid"><span>1</span></li>
-                            <li class="name">
-                                <span>ipone4</span>
-                            </li>
-                            <li class="classify">
-                                <span>手机</span>
-
-                            </li>
-                            <li class="original">
-                                <span>998</span>
-
-                            </li>
-                            <li class="present">
-                                <span>698</span>
-
-                            </li>
-                            <li class="stock">
-                                <span>100</span>
-
-                            </li>
-                            <li class="status">
-                                <span>上线</span>
-                            </li>
-                            <li class="time">
-                                <span>2018-11-11</span>
-                            </li>
-                            <li class="handle">
-                                <!-- <span class="out">下架</span> -->
-                                <span class="edit"><img src="../assets/images/goodslist/pen.png" alt="编辑"></span>
-                                <span class="delete"><img src="../assets/images/goodslist/cancel-icon.png" alt="删除"></span>
-                                <span class="out">下架</span>
-                            </li>
-                        </ul>
-                    </dd>
-                   
-                </dl>
+                            
+                    </dl>
+                </div>
+                
 
                 <div class="pageWrape fr">
-                    <span class="p-amount fl">共<i class="amount">100</i>条</span>
+                    <span class="p-amount fl">共<i class="amount"></i>条</span>
                     <ul class="pagination">
-                        <li class="disabled">
+                        <!-- <li class="disabled">
                             <a class="p-link" href="#" tabindex="-1">上一页</a>
                         </li>
                         <li class="p-item active">
@@ -295,31 +651,40 @@
                         </li>
                         <li class="">
                             <a class="p-link" href="#">下一页</a>
-                        </li>
+                        </li> -->
                     </ul>
 
-                    <div class="p-option fl">
-                        <select name="" id="">
-                                <option value="10条/页">10条/页</option>
-                                <option value="10条/页">20条/页</option>
-                                <option value="10条/页">30条/页</option>
-                                <option value="10条/页">40条/页</option>
-                                <option value="10条/页">50条/页</option>
-                        </select>
+                    <div class="option-wrape fl">
+                        <!-- <div class="p-option fl">
+                            <select name="" id="changPage">
+                                <option value="2">2条/页</option>
+                                <option value="4">4条/页</option>
+                                <option value="6">6条/页</option>
+                                <option value="8">8条/页</option>
+                                
+                            </select>
+                        </div> -->
                     </div>
-
                     <!-- div内元素没有对齐,用vertical-align:top解决 -->
-                    <div class="p-skip fl">                      
+                    <!-- <div class="p-skip fl">                      
                             跳到第<input type="text" class="aim" value="1">页
                             <button class="confirm">确定</button>                        
-                    </div>
+                    </div> -->
                 </div>
                 
 
             </div>
         </div>
     </div>
-    
+    <section class="model_bg"></section>
+    <section class="my_model">
+        <p class="title">
+            <span class="txt">操作确认</span>
+            <span class="closeModel">X</span>
+        </p>
+        <p class="tip-txt">您确认要删除这条数据吗？</p>
+        <div class="opBtn"><a href="javascript:;" class="dialog-sure">确定</a><a href="javascript:;" class="dialog-close">关闭</a></div>
+    </section>
 </body>
 
 </html>

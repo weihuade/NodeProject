@@ -1,0 +1,8 @@
+.main .m_body .contain dl.tables dt, .main .m_body .contain dl.tables dd { display: inline-block; width: 100%; }
+.main .m_body .contain dl.tables dt ul li.check, .main .m_body .contain dl.tables dd ul li.check { width: 52px; }
+.main .m_body .contain dl.tables dt ul li.gid, .main .m_body .contain dl.tables dd ul li.gid { width: 40px; }
+.main .m_body .contain dl.tables dt ul li.name, .main .m_body .contain dl.tables dd ul li.name { width: 620px; text-align: left; padding-left: 10px; }
+.main .m_body .contain dl.tables dt ul li.time, .main .m_body .contain dl.tables dd ul li.time { width: 155px; }
+.main .m_body .contain dl.tables dt ul li.handle, .main .m_body .contain dl.tables dd ul li.handle { width: 100px; }
+
+/*# sourceMappingURL=goodscategory.css.map */

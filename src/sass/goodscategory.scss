@@ -1,0 +1,35 @@
+.main{
+    .m_body{
+        .contain{
+            dl.tables{
+                // width: 100%;
+                // white-space: nowrap;
+                // display: inline-block;
+                dt,dd{
+                    display: inline-block;
+                    width: 100%;
+                    // float: left;
+                    ul{
+                        li.check{
+                            width: 52px;
+                        }
+                        li.gid{
+                            width: 40px;
+                        }
+                        li.name{
+                            width: 620px;
+                            text-align: left;
+                            padding-left: 10px;
+                        }
+                        li.time{
+                            width: 155px;
+                        }
+                        li.handle{
+                            width: 100px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
