@@ -7,6 +7,7 @@ const adduserRouter = require('./adduser')//引入添加用户的后台。
 
 const userslistRouter = require('./userslist')//引入用户列表的后台
 
+const  bbhoemRouter=require('./bbhome');//引入贝贝网首页的后台
 
 let Router=express.Router();
 
@@ -32,6 +33,9 @@ Router.use('/adduser',adduserRouter);
 
 //关于用户列表的路由
 Router.use('/userslist',userslistRouter);
+
+//贝贝网首页的路由
+Router.use('/bbhome', bbhoemRouter);
 
 
 module.exports=Router;

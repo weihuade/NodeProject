@@ -259,9 +259,10 @@ window.onload=function(){
         		});
         		
         		
+
         		//渲染的封装
         		function xuanlan(arr){
-					var res=arr.datalist.map(function(item){
+					var res=arr.data.map(function(item){
 						return`<li>
 									<div class="img-hei">
 										<img src="${item.imgurl}" />
@@ -280,50 +281,86 @@ window.onload=function(){
 					}).join('');
 					haochi.innerHTML+=res;
 				}
-        		
+		
         		var haochi=document.querySelector('.haochi');
         		
-        		var url='api/index.php';
-        		var data=`page=1&qty=12`;
-        		ajax('GET',url,data,function(str){
-        		var arr=JSON.parse(str);
-//      		console.log(arr);
-        			xuanlan(arr);
-        		});
-    			
-    			//当点击的时候又加载一片。
+
+		
+				
+	//从这里开始用nodejs做数据的接口。
+	
+		function alldata(){
+			let xhr=new XMLHttpRequest();
+			xhr.onreadystatechange=function(){
+			if(xhr.readyState==4&&xhr.status==200){
+				let arr=JSON.parse(xhr.responseText)
+				xuanlan(arr);
+			}
+		}
+		let data=`page=${1}&qty=${12}`;
+		
+		xhr.open('post','/bbhome/select',true);
+		xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+		xhr.send(data);		
+				
+		}
+		
+		//做点击加载更多的功能。	col.find).skip((page-1)*qty).limit(qty).
+	
+		
+			//当点击的时候又加载一片。
     			var now=1;
-    			
     			var morejiazai=document.querySelector('.morejiazai');
-    			var	jiazai=document.querySelector('.jiazai')
-    				morejiazai.onclick=function(){
+    			var	jiazai=document.querySelector('.jiazai')	
+    			let xhr=new XMLHttpRequest();
+    				xhr.onreadystatechange=function(){
+    					if(xhr.readyState==4&&xhr.status==200){
+    						let length=JSON.parse(xhr.responseText).data.length;
+    						console.log(length);
+    							alldata();
+    							moredata()
+    					}
+    				}
+    				xhr.open('get','/bbhome/selectall',true)
+    				xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    				xhr.send();
+    			
+    			
+    			
+    			function  moredata(){
+    				let xhr=new XMLHttpRequest();
+    			morejiazai.onclick=function(){
     				now++
-    				var url='api/index.php';
-        			var data=`page=${now}&qty=12`;
-    				ajax('GET',url,data,function(str){
-    					var arr=JSON.parse(str);
-//  					console.log(arr);
-    					xuanlan(arr);
-    					var num=Math.ceil(arr.total/arr.qty)
-    				console.log(num);
+    				var url='/bbhome/select';
+        			var data=`page=${now}&qty=${12}`;
+    				
+    				xhr.open('post',url,true)
+    				xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    				xhr.send(data)
+    				
+    			var num=Math.ceil(length/12)
+    				
     				if(arr.page>=num){
     					jiazai.style.display='none';
     				}else{
     					jiazai.style.display='block';
     				}
-    				});
-    				
-    				
+    		
+
+			}
     			}
-				
-				
+    			
+    			
+		
+			
+			
 				
 				//获取cookie
 //		var name1=document.cookie.split('=')[1]
 			var nihao=document.querySelector('.nihao');
 			var cookies=document.querySelector('.cookies');
 			var name1=Cookie.get('name');
-			console.log(name1);
+//			console.log(name1);
 			if(name1){
 				
 				cookies.innerHTML=name1+'欢迎来到贝贝网';
