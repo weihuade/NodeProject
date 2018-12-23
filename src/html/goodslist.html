@@ -20,6 +20,7 @@
             let page_more = pageWrape.querySelector(".option-wrape");
             let pag = pageWrape.querySelector("ul.pagination");
             let pAmount = pageWrape.querySelector("span.p-amount i.amount");
+            let xhr = new XMLHttpRequest();
             function motion(){
                 // 侧边栏菜单
                 //多个选择器绑定不同事件
@@ -68,9 +69,8 @@
                 });
             }
             
-            //删除数据
+            //删除单条数据
             function deleteGoods(_id){
-                let xhr = new XMLHttpRequest();
                 xhr.open("delete",`/goods`,true);//连接路由
                 xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
                 xhr.send(`_id=${_id}`);
@@ -105,22 +105,27 @@
                 }
             }
              
-            //选中复选框-->删除
+            //全选删除
             $(".navbar-nav li.delete").click(function(){
+                
+                deleteGoods();
                 // console.log($('.soncheck')); //单选按钮
-                let _id = [];
-                $('.soncheck').each(function(){
-                    if($(this).is(":checked")){
-                        _id.push($(this).parents("dd").attr("data-id"));
+                // let _id = [];
+                // $('.soncheck').each(function(){
+                //     if($(this).is(":checked")){
+                //         _id.push($(this).parents("dd").attr("data-id"));
                         
-                    }
-                })
-                console.log(_id);
-                deleteGoods(_id);
+                //     }
+                // })
+                // console.log(_id);
             });
             function checkDel(){
 
             }
+
+            //点击编辑,将该商品的_id存到cookie,传到商品编辑页(也即商品添加页)
+
+
             //全选、单选
             function check(){
                 let $wholecheck = $('.wholecheck'),//全选按钮
@@ -195,7 +200,11 @@
                                 </li>
                                 <li class="handle">
                                     <!-- <span class="out">下架</span> -->
-                                    <span class="edit"><img src="../assets/images/goodslist/pen.png" alt="编辑"></span>
+                                    <span class="edit">
+                                        <a href="./goodsadd.html?_id=${data[i]._id}">
+                                        <img src="../assets/images/goodslist/pen.png" alt="编辑">
+                                        </a>
+                                        </span>
                                     <span class="delete"><img src="../assets/images/goodslist/cancel-icon.png" alt="删除"></span>
                                     <span class="out">下架</span>
                                 </li>
@@ -204,7 +213,7 @@
                 }
                 table.innerHTML = str;
             }
-            
+
             //选择分类并获取之
             $("li .dropdown-menu").on("click","a",function(){
                 let target = $(this).parents("li.dropdown").find("a#navbarDropdown");
@@ -440,7 +449,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item add">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="./goodsadd.html">
                                     <i class="icon"><img src="../assets/images/goodslist/add-icon.png"></i><span>添加</span> 
                                 </a>
                             </li>
