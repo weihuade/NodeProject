@@ -19,7 +19,7 @@ function connect(collectionName){
                 return;
             }
             //使用数据库
-            let db = client.db("mytest");
+            let db = client.db("nodeproject");
             //使用集合(表)
             let col = db.collection(collectionName);
             resolve({col,client});

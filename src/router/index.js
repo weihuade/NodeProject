@@ -6,8 +6,16 @@ const loginRouter = require('./login1')//引入登录的后台
 const adduserRouter = require('./adduser')//引入添加用户的后台。
 
 const userslistRouter = require('./userslist')//引入用户列表的后台
+const  goodsRouter=require('./goods');//引入goodsde后台。
 
 const  bbhoemRouter=require('./bbhome');//引入贝贝网首页的后台
+const bblistRouter=require('./bblist') //贝贝网列表页。
+const bbgoodsRouter=require('./bbgoods') //贝贝详情页。
+const bbcarsRouter=require('./bbcars') //贝贝购物车。
+const bbregRouter=require('./bbreg') //贝贝注册页。
+
+
+
 
 let Router=express.Router();
 
@@ -31,11 +39,20 @@ Router.use('/login1',loginRouter);
 Router.use('/adduser',adduserRouter);
 
 //关于用户列表的路由
+
 Router.use('/userslist',userslistRouter);
+Router.use("/goods",goodsRouter);
+
+
 
 //贝贝网首页的路由
 Router.use('/bbhome', bbhoemRouter);
-
-Router.use("/goods",goodsRouter);
+//贝贝网列表页的路由
+Router.use('/bblist', bblistRouter);
+//贝贝网详情页的路由
+Router.use('/bbgoods', bbgoodsRouter);
+//贝贝购物车
+Router.use('/bbcars', bbcarsRouter);
+Router.use('/bbreg', bbregRouter);
 
 module.exports=Router;

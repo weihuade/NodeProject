@@ -8,7 +8,7 @@ const MongoClient = mongodb.MongoClient;
 
 const db = require('../db');
 
-//查询所有数据的路由
+
 Router.post('/select',urlencodedParser,(req,res)=>{
 
 let qty=req.body.qty*1;
@@ -26,7 +26,9 @@ MongoClient.connect(url, function(err, db) {
                 res.send({
                     code:1,
                     data:result,
-                    msg:'ok'
+                    msg:'ok',
+           			page:page,
+           			qty:qty
                 })
             }
             else{
@@ -45,7 +47,7 @@ MongoClient.connect(url, function(err, db) {
   
 });
 
-
+//查询所有数据的路由
 Router.get('/selectall',async (req,res)=>{
     //获取所有分类
 
@@ -55,7 +57,7 @@ Router.get('/selectall',async (req,res)=>{
     }catch(err){
         data = err;
     }
-
+	
     res.send(data);
 });
 

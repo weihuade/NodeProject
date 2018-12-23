@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded',()=>{
 	var val=phonenum.value.trim();
 	if(val){
 		if(checkReg.tel(val)){
-			var url='../api/checkname.php';
+			var url='/bbreg/checkname';
 			var data=`use=${val}`;
-			ajax('GET',url,data,function(str){
-					console.log(str);
-					if(str==1){
+			ajax('POST',url,data,function(str){
+				let res=JSON.parse(str)
+					if(res.code==1){
 						phonenum1.innerHTML='该用户名可以注册';
 						phonenum1.style.color='green';
 							isok1=true;

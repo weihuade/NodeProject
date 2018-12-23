@@ -293,19 +293,20 @@ window.onload=function(){
  			var res=(location.search).slice(1)
  			var id=res.split('=')[1];
 			var price1=document.querySelector('.price1');
- 			var url='../api/goods.php';
+ 			var url='/bbgoods/slecteone';
  			data=`idx=${id}`;
- 			ajax('GET',url,data,function(str){
- 			var arr=JSON.parse(str);
-				
+ 			ajax('POST',url,data,function(str){
+ 			var arr=JSON.parse(str).data;
+//				console.log(arr);
+   				price1.innerHTML=arr[arr.length-1].priceint+'.00';
  				var arrSmall =[];
 				var arrBig = [];
+				
  			for(var i=0;i<arr.length;i++){
  				arrSmall.push(arr[i].imgurl);
 				arrBig.push(arr[i].imgurl);
 		}
  			
- 				price1.innerHTML=arr[0].priceint+'.00';
  				
  			
 			
@@ -368,20 +369,23 @@ window.onload=function(){
  			
  			var buyalong=document.querySelector('.buyalong');
    			buyalong.onclick=function(){
-   			ajax('GET',url,data,function(str){
-   				var arr=JSON.parse(str);
-   				console.log(arr);
-   				
+   			 var ress=confirm('是否加入购物车')
+   			if(ress){
+   			ajax('POST',url,data,function(str){
+   				var arr=JSON.parse(str).data;
+   				//console.log(arr);
    				var num=$('.num').val();
-//		  	 	console.log(num);
-   				var url1='../api/inserttocars.php';
-				var data1=`dianming1=${arr[0].dianming}&urlimgc=${arr[0].imgurl}&titlec=${arr[0].title1}&yang=${arr[0].yangshi}&danjiac=${arr[0].priceint}&shuliangc=${num}`;				
-   				ajax('GET',url1,data1,function(str1){
-// 				console.log(str1);
-   				
-   					});
-   				
-   			});
+   				var leng=arr[arr.length-1]//因为mongodb有我想要的数据在最后一条所以只能这样了
+
+   				let xhr2=new XMLHttpRequest();
+   				var url2='/bbgoods/inserttocar';
+				var data2=`dianming1=${leng.dianming}&urlimgc=${leng.imgurl}&titlec=${leng.title1}&yang=${leng.yangshi}&danjiac=${leng.priceint}&shuliangc=${num}`;				
+   				xhr2.open('post',url2,true)
+   				xhr2.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+   				xhr2.send(data2)
+   				});
+   			}
+   			
    		}
    			
    			

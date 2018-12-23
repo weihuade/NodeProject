@@ -114,12 +114,11 @@ window.onload=function(){
 		if(val>=10){
 			val=10;
 		}
+	
 		var danjia=$(this).parent().parent().prev().find('.view-ItemEntryPrice').text();
-//		console.log(danjia);
-		var url='../api/carsupdate.php';
+		var url='/bbcars/updatanum';
 		var data=`valss=${val}&jiage=${danjia}`;
-		ajax('GET',url,data,function(str){});
-		
+		ajax('POST',url,data,function(str){});
 		
 		$(this).prev().val(val);
 		price($(this));//小计
@@ -137,11 +136,9 @@ window.onload=function(){
 			val=1;
 		}
 		var danjia=$(this).parent().parent().prev().find('.view-ItemEntryPrice').text();
-		var url='../api/carsupdate.php';
+		var url='/bbcars/updatanum';
 		var data=`valss=${val}&jiage=${danjia}`;
-		ajax('GET',url,data,function(str){
-//			console.log(str);
-		});
+		ajax('POST',url,data,function(str){});
 		
 		
 		
@@ -187,12 +184,10 @@ var pp=now.parent().parent().parent().next().find('.jiage1').html(aprice.toFixed
 		
 		//做接口删除数据库中的东西。
 			var danjia=$(this).parent().prev().prev().prev().find('.view-ItemEntryPrice').text();
-			console.log(danjia);
-			var url='../api/carsdelete.php';
+			var url='/bbcars/delnow';
 			var data=`jiage=${danjia}`;
-			ajax('GET',url,data,function(str){
-//			console.log(str);
-		});
+			ajax('POST',url,data,function(str){	});
+	
 		
 		
 		}
@@ -240,6 +235,9 @@ var pp=now.parent().parent().parent().next().find('.jiage1').html(aprice.toFixed
 		for(var i=arr.length-1;i>=0;i--){
 			//从后面开始删除
 			$('.cart-td-check').eq(arr[i]).parent().parent().remove();
+			var url='/bbcars/delall';
+			var data='';
+			ajax('POST',url,data,function(str){});
 			}
 		}
 		updata();
@@ -321,10 +319,10 @@ function allnum(arr){
 	//做数据的渲染
 	var sjxr=document.querySelector('.view-CartList');
 	var form=document.querySelector('.pure-form');
-	var url='../api/cars.php';
+	var url='/bbcars/cars';
 	var data='';
-	ajax('GET',url,data,function(str){
-		var arr=JSON.parse(str);
+	ajax('POST',url,data,function(str){
+		var arr=JSON.parse(str).data;
 //		console.log(arr);
 		
 		var reg=arr.map(function(item){
