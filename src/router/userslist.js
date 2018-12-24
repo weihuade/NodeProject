@@ -14,7 +14,7 @@ Router.get('/select',async (req,res)=>{
 
     let data
     try{
-        data = await db.find('username',{});
+        data = await db.find('administrator',{});
     }catch(err){
         data = err;
     }
@@ -30,7 +30,7 @@ Router.delete('/del',urlencodedParser,async(req,res)=>{
 //  console.log(req.query);
     console.log(req.body);
     try{
-        data = await db.delete('username',req.body);//什么用条件查询进行删除
+        data = await db.delete('administrator',req.body);//什么用条件查询进行删除
     }catch(err){
         data = err;
     }
@@ -48,7 +48,7 @@ Router.delete('/deleteall',urlencodedParser,(req,res)=>{
         let db = database.db('nodeproject');
 	
         // 使用集合
-        let user = db.collection('username');
+        let user = db.collection('administrator');
   			
         // 删除所有gid等于2的数据。
         user.deleteMany({"gid":'2'},(err,result)=>{

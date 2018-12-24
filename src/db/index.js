@@ -19,7 +19,7 @@ function connect(collectionName){
                 return;
             }
             //使用数据库
-            let db = client.db("mytest");
+            let db = client.db("nodeproject");
             //使用集合(表)
             let col = db.collection(collectionName);
             resolve({col,client});
@@ -86,6 +86,9 @@ exports.page=(collectionName,data)=>{
 //find()查询
 exports.find=(collectionName,query)=>{
     return new Promise(async(resolve,reject)=>{
+        if(query._id){
+            query = {_id:ObjectID(query._id)}
+        }
         let {col,client} = await connect(collectionName);
         col.find(query).toArray((err,result)=>{
             if(err){
@@ -99,7 +102,7 @@ exports.find=(collectionName,query)=>{
             }else{
                 resolve({
                     code:1,
-                    msg:"查询所有",
+                    msg:"查询成功",
                     data:result
                 });
                 // resolve(result);
@@ -114,6 +117,20 @@ exports.find=(collectionName,query)=>{
 exports.insert=(collectionName,data)=>{
     return new Promise(async(resolve,reject)=>{
         let {col,client} = await connect(collectionName);
+        data={
+            "name": data.name,
+            "title": data.title,
+            "category": data.category,
+            "hot": data.hot,
+            "rec": data.rec,
+            "pro": data.pro,
+            "o_price": data.o_price,
+            "c_price": data.c_price,
+            "stock": data.stock,
+            "status": data.status,
+            "descript": data.descript,
+            "create_time": data.create_time
+        };
         //col.insertMany();
         col[Array.isArray(data)?'insertMany':'insertOne'](data,(err,result)=>{
             if(err){
@@ -178,11 +195,29 @@ exports.delete=(collectionName,query)=>{
 
 //改
 exports.update=(collectionName,query,data)=>{
+    // console.log("data:",data);
     return new Promise(async(resolve,reject)=>{
         let {col,client} = await connect(collectionName);
         if(query._id){
-            query = {_id:query._id}
+            query = {_id:ObjectID(query._id)}
         }
+        data={
+            "name": data.name,
+            "title": data.title,
+            "category": data.category,
+            "hot": data.hot,
+            "rec": data.rec,
+            "pro": data.pro,
+            "o_price": data.o_price,
+            "c_price": data.c_price,
+            "stock": data.stock,
+            "status": data.status,
+            "descript": data.descript
+        };
+        //db.goodslist.update({gid:"g001"},{$set:{name:"mac"}});
+        //把gid:"g001"的数据中的name字段的属性值修改为"name"
+        //query: {gid:"g002"}
+        //data: {name:"mac"}
         col[Array.isArray(data)?'updateMany':'updateOne'](query,{$set:data},(err,result)=>{
             if(err){
                 reject({

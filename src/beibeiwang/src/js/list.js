@@ -266,9 +266,9 @@ window.onload=function(){
            
            	//渲染部分的封装
            	function xuanlan(arr){
-           		var reg=arr.datalist.map(function(item){
+           		var reg=arr.data.map(function(item){
            			return `<li data-id="${item.id}">
-							<a href="http://localhost:5555/beibeiwang/src/html/goods.html?id=${item.gid}" target="blank">
+							<a href="./goods.html?id=${item.gid}" target="blank">
 								<div class="matter1-1">
 									<img src="${item.imgurl}"/ title="${item.title}">
 								</div>
@@ -284,14 +284,20 @@ window.onload=function(){
            		matter1.innerHTML=reg;
            	}
            	
-           	var url='../api/list.php';
+           	var url1='/bblist/selectall';
+           	var data1='';
+           	ajax('GET',url1,data1,function(str1){
+           		let	total=JSON.parse(str1).data.length;
+           		
+           		///////////////////////////
+           		var url='/bblist/select';
            	var data=`page=1&qty=12`;
-           	ajax('GET',url,data,function(str){
+           	ajax('POST',url,data,function(str){
            		var arr=JSON.parse(str);
            		xuanlan(arr);
            		
            		//生成页数
-           		var num=Math.ceil(arr.total / arr.qty);
+           		var num=Math.ceil(total / arr.qty);
            			var con='';
 					for(var i=0;i<num;i++){
 						con+=`<span>${i+1}</span>`;
@@ -299,17 +305,25 @@ window.onload=function(){
            		page1.innerHTML=con;
            		page1.children[0].className='active2';
            	});
+           		
+  	})
+           	
+           	
 
-             //点击切换页码
-             page1.onclick=function(ev){
+            
+          
+          
+          
+           //点击切换页码
+          page1.onclick=function(ev){
              	var ev=ev || window.event;
              	if(ev.target.tagName.toLowerCase()=='span'){
              		var pagenum=ev.target.innerText;
-             		var url='../api/list.php';
+             		var url='/bblist/select';
            			var data=`page=${pagenum}&qty=12`;
-           			ajax('GET',url,data,function(str){
+           			ajax('POST',url,data,function(str){
            				var arr=JSON.parse(str);
-           				console.log(arr);
+//         				console.log(arr);
            				xuanlan(arr);
            				
            				for(var i=0;i<page1.children.length;i++){
@@ -328,34 +342,30 @@ window.onload=function(){
            	var jiage=document.querySelector('.jiage');
            	var xiaoliang=document.querySelector('.xiaoliang');
            	zonghe.onclick=function(){
-           			var url='../api/list.php';
-           			var data=`page=1&qty=12&paixu=1`;
-           			ajax('GET',url,data,function(str){
+           			var url='/bblist/zonghe';
+           			var data=`page=1&qty=12`;
+           			ajax('POST',url,data,function(str){
            				var arr=JSON.parse(str);
            				xuanlan(arr);
            			});
            	}
              
              jiage.onclick=function(){
-           			var url='../api/list.php';
-           			var data=`page=1&qty=12&paixu=2`;
-           			ajax('GET',url,data,function(str){
+           			var url='/bblist/price';
+           			var data=`page=1&qty=12`;
+           			ajax('post',url,data,function(str){
            				var arr=JSON.parse(str);
+//         				console.log(arr);
            				xuanlan(arr);
            			});
            	}
              
              xiaoliang.onclick=function(){
-           			var url='../api/list.php';
-           			var data=`page=1&qty=12&paixu=3`;
-           			ajax('GET',url,data,function(str){
+           			var url='/bblist/xiaoliang';
+           			var data=`page=1&qty=12`;
+           			ajax('POST',url,data,function(str){
            				var arr=JSON.parse(str);
            				xuanlan(arr);
            			});
            	}
-             
-             
-             
-             
-   
-};
+    };

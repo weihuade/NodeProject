@@ -14,7 +14,7 @@ Router.put('/adduser1',urlencodedParser,async(req,res)=>{
     let data
     try{
     	//add_time:Date.now()添加时间
-        data = await db.insert('username',{...req.body,add_time:new Date()});//username为集合的名称
+        data = await db.insert('administrator',{...req.body,add_time:new Date()});//username为集合的名称
     }catch(err){
         data = err;
     }
@@ -38,7 +38,7 @@ MongoClient.connect(url, function(err, db) {
 
 // let ObjectID = require('mongodb').ObjectID;//传成对象不然匹配不了数据库里的东西。
     var whereStr = {_id:ObjectID(req.body.id)};  // 查询条件
-    dbo.collection("username").find(whereStr).toArray(function(err, result) {
+    dbo.collection("administrator").find(whereStr).toArray(function(err, result) {
         if (err) throw err;
 //      console.log(result);
           if(result){
@@ -90,7 +90,7 @@ MongoClient.connect(url, function(err, db) {
     	 }
     };
    	
-   	dbo.collection("username").updateOne(whereStr, updateStr, function(err, result) {
+   	dbo.collection("administrator").updateOne(whereStr, updateStr, function(err, result) {
         if (err) throw err;
          if(result){
                 res.send({

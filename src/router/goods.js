@@ -1,11 +1,19 @@
+<<<<<<< HEAD
 ﻿//把路由封装成模块
+=======
+//把路由封装成模块
+>>>>>>> 9ce76790f66f228d51186aa72eee7b838fd5b499
 
 const express = require("express");
 const bodyParser = require("body-parser");
 
 let urlencodedParser = bodyParser.urlencoded({extended:false});
 let Router = express.Router();
+<<<<<<< HEAD
 const db = require("../db/goodsindex");
+=======
+const db = require("../db");
+>>>>>>> 9ce76790f66f228d51186aa72eee7b838fd5b499
 
 //查询所有数据,所以query传回去的是判断条件{}
 // Router.get("/",async(req,res)=>{
