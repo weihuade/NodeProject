@@ -9,6 +9,10 @@ const userslistRouter = require('./userslist')//引入用户列表的后台
 
 const  bbhoemRouter=require('./bbhome');//引入贝贝网首页的后台
 
+const goodsRouter = require("./goods");
+
+const editGoodsRouter = require("./editGoods"); 
+
 let Router=express.Router();
 
 Router.all('*', function(req, res, next) {
@@ -36,6 +40,8 @@ Router.use('/userslist',userslistRouter);
 //贝贝网首页的路由
 Router.use('/bbhome', bbhoemRouter);
 
-Router.use("/goods",goodsRouter);
+Router.use("/goods",goodsRouter);//商品列表的路由 
+
+Router.use("/editGoods",editGoodsRouter);//商品添加页面的路由
 
 module.exports=Router;

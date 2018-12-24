@@ -13,17 +13,223 @@
     <title>商品添加</title>
     <script>
         // document.addEventListener("DOMContentLoaded",()=>{
-            $(()=>{
-                // 侧边栏菜单
-                //多个选择器绑定不同事件
-                $(".menu .hover,.tables dd span,.tables dd li,li span.tri i,li.goods-property .prop-wrap span").on({
-                    mouseenter:function(){
-                        $(this).addClass("mouseOver");
-                    },
-                    mouseleave:function(){
-                        $(this).removeClass("mouseOver");
+        $(()=>{
+
+            let Wraper = document.querySelector(".contain>ul"); 
+            let btnCommit = Wraper.querySelector("li.commit p.btn-commit");
+            let goodsName = Wraper.querySelector("li.goods-mame input");
+            let goodsSubhead = Wraper.querySelector("li.goods-subhead input");
+            let origin = Wraper.querySelector("li.goods-price p:first-child input");
+            let sale = Wraper.querySelector("li.goods-price p:last-child input");
+            let category = Wraper.querySelector("li.goods-category span .txt");
+            let coverImg = Wraper.querySelector("li.goods-images .img-wrap figure");
+            let goodsStock = Wraper.querySelector("li.goods-stock input");          
+            let goodsStatus = Wraper.querySelector("li.goods-stores .on-off>div");
+            let goodsDescribe = Wraper.querySelector("li.goods-describe textarea");
+            let goodsHot = Wraper.querySelector("li.goods-property span.hot");
+            let goodsRec = Wraper.querySelector("li.goods-property span.rec");
+            let goodsPro = Wraper.querySelector("li.goods-property span.pro");
+            let xhr = new XMLHttpRequest();
+            // console.log(goodsHot);
+            //获取网址参数
+            // console.log(location.search);
+            let _id = (location.search).slice(5);
+            // console.log(_id);
+            if(_id){
+                getData(_id);
+                btnCommit.addEventListener("click",function(){//更新数据
+                    let name = goodsName.value;
+                    let title = goodsSubhead.value;
+                    let cat = category.innerText;
+                    let txt = goodsDescribe.value;
+                    let oPrice = origin.value;
+                    let cPrice = sale.value;
+                    let stock = goodsStock.value;
+                    let hot,rec,pro,status;
+                    switch (goodsHot.classList[1]){
+                        case "check":
+                            hot = 1;
+                            break;
+                        case "checkbox":
+                            hot = 0;
+                            break;
                     }
-                });   
+                    switch (goodsRec.classList[1]){
+                        case "check":
+                            rec = 1;
+                            break;
+                        case "checkbox":
+                            rec = 0;
+                            break;
+                    }
+                    switch (goodsPro.classList[1]){
+                        case "check":
+                            pro = 1;
+                            break;
+                        case "checkbox":
+                            pro = 0;
+                            break;
+                    }
+                    switch (goodsStatus.classList[0]){
+                        case "on":
+                            status = "online";
+                            break;
+                        case undefined:
+                            status = "outline";
+                            break;
+                    }
+                    // console.log(txt);
+                    // console.log(hot,rec,pro);
+                    
+                    /**
+                    switLine(goodsHot.classList[1],hot);
+                    function switLine(eleCls,field){
+                        switch (eleCls){
+                            case "check":
+                                field = 1;
+                                break;
+                            case "checkbox":
+                                field = 0;
+                                break;
+                            default:
+                                field = 0;
+                        }
+                    }
+                    */
+                    let all = `_id=${_id}&name=${name}&title=${title}&category=${cat}&hot=${hot}&rec=${rec}&pro=${pro}&o_price=${oPrice}&c_price=${cPrice}&stock=${stock}&status=${status}&descript=${txt}`;
+                    xhr.open("post",`/editGoods`,true);
+                    xhr.onload = function(){
+                        if(xhr.status == 200){
+                            let res = JSON.parse(xhr.responseText);
+                            console.log(res);
+                        }
+                    }
+                    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+                    xhr.send(all);
+                })
+            }else{
+                btnCommit.addEventListener("click",function(){
+                    let name = goodsName.value;
+                    let title = goodsSubhead.value;
+                    let cat = category.innerText;
+                    let txt = goodsDescribe.value;
+                    let oPrice = origin.value;
+                    let cPrice = sale.value;
+                    let stock = goodsStock.value;
+                    let hot,rec,pro,status;
+                    switch (goodsHot.classList[1]){
+                        case "check":
+                            hot = 1;
+                            break;
+                        case "checkbox":
+                            hot = 0;
+                            break;
+                    }
+                    switch (goodsRec.classList[1]){
+                        case "check":
+                            rec = 1;
+                            break;
+                        case "checkbox":
+                            rec = 0;
+                            break;
+                    }
+                    switch (goodsPro.classList[1]){
+                        case "check":
+                            pro = 1;
+                            break;
+                        case "checkbox":
+                            pro = 0;
+                            break;
+                    }
+                    switch (goodsStatus.classList[0]){
+                        case "on":
+                            status = "online";
+                            break;
+                        case undefined:
+                            status = "outline";
+                            break;
+                    }
+                    let all = `_id=${_id}&name=${name}&title=${title}&category=${cat}&hot=${hot}&rec=${rec}&pro=${pro}&o_price=${oPrice}&c_price=${cPrice}&stock=${stock}&status=${status}&descript=${txt}`;
+                    xhr.open("put",`/editGoods`,true);
+                    xhr.onload = function(){
+                        if(xhr.status == 200){
+                            let res = JSON.parse(xhr.responseText);
+                            console.log(res);
+                        }
+                    }
+                    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+                    xhr.send(all);
+                })
+            }
+
+            //请求数据
+            function getData(_id){
+                xhr.open("get",`/editGoods?_id=${_id}`,true);
+                xhr.onload = function(){
+                    if(xhr.status == 200){
+                        let res = JSON.parse(xhr.responseText);
+                        let data = res.data[0];
+                        console.log(res.data[0]);
+                        // console.log($("li.")); 
+                        Render(data);
+                    }
+                }
+                xhr.send();
+            }
+            
+            //由列表页跳转过来时数据的渲染
+            function Render(data){
+                goodsName.value = data.name;
+                goodsSubhead.value = data.title;
+                origin.value = data.o_price;
+                sale.value = data.c_price;
+                category.innerText = data.category;
+                goodsStock.value = data.stock;
+
+                switAttr(data.hot,goodsHot);
+                switAttr(data.rec,goodsRec);
+                switAttr(data.pro,goodsPro);
+                switch (data.status){
+                    case "online":
+                        goodsStatus.classList.add("on");
+                        break;
+                    case "outline":
+                        goodsStatus.classList.add("");
+                        break;
+                    default:
+                        goodsStatus.classList.add("");
+                }
+                goodsDescribe.value = data.descript;
+            }
+
+            //商品状态、属性判断函数
+            function switAttr(data,ele){
+                switch (data){
+                    case "1":
+                        ele.classList.remove("checkbox");
+                        ele.classList.add("check");
+                        break;
+                    case "0":
+                        ele.classList.remove("check");
+                        ele.classList.add("checkbox");
+                        break;
+                    default:
+                        ele.classList.add("checkbox");
+                }
+            }
+            
+
+            // 侧边栏菜单
+            //多个选择器绑定不同事件
+            $(".menu .hover,.tables dd span,.tables dd li,li span.tri i,li.goods-property .prop-wrap span").on({
+                mouseenter:function(){
+                    $(this).addClass("mouseOver");
+                },
+                mouseleave:function(){
+                    $(this).removeClass("mouseOver");
+                }
+            });   
+            
             //页码跳转
             $(".pageWrape .pagination li.p-item").click(function(){
                 $("li.p-item").removeClass("active");
