@@ -6,7 +6,6 @@ const loginRouter = require('./login1')//引入登录的后台
 const adduserRouter = require('./adduser')//引入添加用户的后台。
 
 const userslistRouter = require('./userslist')//引入用户列表的后台
-const  goodsRouter=require('./goods');//引入goodsde后台。
 
 const  bbhoemRouter=require('./bbhome');//引入贝贝网首页的后台
 const bblistRouter=require('./bblist') //贝贝网列表页。
