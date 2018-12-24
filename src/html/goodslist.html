@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -196,7 +196,7 @@
                                     <span class="item">${data[i].status}</span>
                                 </li>
                                 <li class="time">
-                                    <span class="item">${data[i].create_time}</span>
+                                    <span class="item">${data[i].create_time.slice(0,10)}</span>
                                 </li>
                                 <li class="handle">
                                     <!-- <span class="out">下架</span> -->
@@ -396,10 +396,10 @@
                     <div class="card-body">
                             <ul>
                                 <li class="hover">
-                                    <a href="./goodslist.html">用户列表</a>                                   
+                                    <a href="./userslist.html">用户列表</a>                                   
                                 </li>
                                 <li class="hover">
-                                    <a href="./goodslist.html">添加用户</a>
+                                    <a href="./adduser.html">添加用户</a>
                                 </li>
                             </ul>
                     </div>

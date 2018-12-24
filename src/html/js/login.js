@@ -55,7 +55,7 @@ let status = [200,304];
                         console.log(res)
                         if(res.code ==1){
                         	alert('登录成功。')
-                            location.href ="index.html";
+                            location.href ="goodslist.html";
                             
                         }else{
           

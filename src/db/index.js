@@ -1,242 +1,164 @@
 /**
- * 封装数据库的所有操作
- * 
+ * 关于数据库的所有操作
+ * 增
+ * 删
+ * 改
+ * 查
  */
 
-//引入mongoDB
-const mongodb = require("mongodb");
-//获取客户端
-const MongoClient = mongodb.MongoClient;
+const mongodb = require('mongodb');
+// 获取Mongo客户端
+const MongoClient = mongodb.MongoClient
 
-const ObjectID = mongodb.ObjectID;
-
-//封装连接数据库函数
+// 连接数据库
 function connect(collectionName){
-   return new Promise((resolve,reject)=>{
-        MongoClient.connect("mongodb://localhost:27017",(err,client)=>{
+    return new Promise((resolve,reject)=>{
+
+        MongoClient.connect('mongodb://localhost:27017',(err,client)=>{
             if(err){
                 reject(err);
                 return;
             }
-            //使用数据库
-            let db = client.db("nodeproject");
-            //使用集合(表)
+
+            // 使用数据库
+            let db = client.db('nodeproject');
+
+            // 使用集合
             let col = db.collection(collectionName);
+
             resolve({col,client});
         });
-   });
+    })
 }
 
-exports.sort=(collectionName,data)=>{
+// 查
+exports.find = (collectionName,query)=>{
     return new Promise(async(resolve,reject)=>{
-        // console.log(data);//{ mth: 'o_price', rank: 1, page: 1, qty: 2 }
-        let {quy,mth,rank,page,qty} = data;
-        // console.log(typeof(mth),mth);
-        let query = {[mth]:rank*1};
-        let {col,client} = await connect(collectionName);
-        //sort({mth:-1}) 名为mth的字段降序输出
-        col.find(quy).sort(query).skip((page-1)*qty).limit(qty).toArray((err,result)=>{
-            if(err){
-                reject({
-                    code:0,
-                    msg:"获取该页码数据失败",
-                    data:err
-                });
-                return;
-            }else{
-                resolve({
-                    code:1,
-                    msg:"获取该页码数据成功",
-                    data:result
-                });
-            }
-            //关闭数据库,避免资源浪费
-            client.close();
-        });
-    });
-};
 
-exports.page=(collectionName,data)=>{
-    return new Promise(async(resolve,reject)=>{
-        // console.log(data);
-        let {quy,page,qty} = data;
-        // [page,qty] = [page*1,qty*1];
-        // console.log(page);
         let {col,client} = await connect(collectionName);
-        col.find(quy).skip((page-1)*qty).limit(qty).toArray((err,result)=>{
-            if(err){
-                reject({
-                    code:0,
-                    msg:"获取该页码数据失败",
-                    data:err
-                });
-                return;
-            }else{
-                resolve({
-                    code:1,
-                    msg:"获取该页码数据成功",
-                    data:result
-                });
-            }
-            //关闭数据库,避免资源浪费
-            client.close();
-        });
-    });
-};
-//find()查询
-exports.find=(collectionName,query)=>{
-    return new Promise(async(resolve,reject)=>{
-        if(query._id){
-            query = {_id:ObjectID(query._id)}
-        }
-        let {col,client} = await connect(collectionName);
+
+        // 查询所有分类
         col.find(query).toArray((err,result)=>{
             if(err){
                 reject({
                     code:0,
-                    msg:"查询失败",
+                    msg:'查询失败',
                     data:err
                 });
-                // reject(result);
-                return;
             }else{
+
                 resolve({
                     code:1,
-                    msg:"查询成功",
+                    msg:'success',
                     data:result
                 });
-                // resolve(result);
             }
-            //关闭数据库,避免资源浪费
+
+
+            // 关闭数据库，避免资源浪费
             client.close();
         });
+    
     });
-};
+}
 
-//增
-exports.insert=(collectionName,data)=>{
+// 增
+exports.insert = (collectionName,data)=>{
     return new Promise(async(resolve,reject)=>{
+
         let {col,client} = await connect(collectionName);
-        data={
-            "name": data.name,
-            "title": data.title,
-            "category": data.category,
-            "hot": data.hot,
-            "rec": data.rec,
-            "pro": data.pro,
-            "o_price": data.o_price,
-            "c_price": data.c_price,
-            "stock": data.stock,
-            "status": data.status,
-            "descript": data.descript,
-            "create_time": data.create_time
-        };
-        //col.insertMany();
-        col[Array.isArray(data)?'insertMany':'insertOne'](data,(err,result)=>{
+
+
+        // 查询所有分类
+        col[Array.isArray(data) ? 'insertMany':'insertOne'](data,(err,result)=>{
             if(err){
                 reject({
                     code:0,
-                    msg:"插入失败",
+                    msg:'插入失败',
                     data:err
                 });
-                // reject(result);
-                return;
             }else{
+
                 resolve({
                     code:1,
-                    msg:"插入成功",
+                    msg:'success',
                     data:result
                 });
-                // resolve(result);
             }
-            //关闭数据库,避免资源浪费
+
+
+            // 关闭数据库，避免资源浪费
             client.close();
         });
+    
     });
-};
+}
 
-//删
-exports.delete=(collectionName,query)=>{
-    // console.log(query._id.split(",").length);
-    // if(query._id){
-    //     if(query._id.split(",")>1){
-
-    //     }else{
-    //         query = {_id:ObjectID(query._id)}
-    //     }
-    // }
+// 删
+exports.delete = (collectionName,query)=>{
     return new Promise(async(resolve,reject)=>{
+
         let {col,client} = await connect(collectionName);
-        if(query._id){
-            query = {_id:ObjectID(query._id)}
-        }
-        col[Array.isArray(query)?'deleteMany':'deleteOne'](query,(err,result)=>{
+		let ObjectID = require('mongodb').ObjectID
+		if(query._id){
+			query={_id:ObjectID(query._id)}
+		}
+        // 查询所有分类
+        col[Array.isArray(query) ? 'deleteMany':'deleteOne'](query,(err,result)=>{
             if(err){
                 reject({
                     code:0,
-                    msg:"删除失败",
+                    msg:'删除失败',
                     data:err
                 });
-                // reject(result);
-                return;
             }else{
+
                 resolve({
                     code:1,
-                    msg:"删除成功",
+                    msg:'success',
                     data:result
                 });
-                // resolve(result);
             }
-            //关闭数据库,避免资源浪费
+
+
+            // 关闭数据库，避免资源浪费
             client.close();
         });
+    
     });
-};
+}
 
-//改
-exports.update=(collectionName,query,data)=>{
-    // console.log("data:",data);
+// 改
+exports.update = (collectionName,query,data)=>{
     return new Promise(async(resolve,reject)=>{
+
         let {col,client} = await connect(collectionName);
-        if(query._id){
-            query = {_id:ObjectID(query._id)}
-        }
-        data={
-            "name": data.name,
-            "title": data.title,
-            "category": data.category,
-            "hot": data.hot,
-            "rec": data.rec,
-            "pro": data.pro,
-            "o_price": data.o_price,
-            "c_price": data.c_price,
-            "stock": data.stock,
-            "status": data.status,
-            "descript": data.descript
-        };
-        //db.goodslist.update({gid:"g001"},{$set:{name:"mac"}});
-        //把gid:"g001"的数据中的name字段的属性值修改为"name"
-        //query: {gid:"g002"}
-        //data: {name:"mac"}
-        col[Array.isArray(data)?'updateMany':'updateOne'](query,{$set:data},(err,result)=>{
+
+        // if(query._id){
+        //     query = {_id:query._id}
+        // }
+
+        // 查询所有分类
+        col[Array.isArray(query) ? 'updateMany':'updateOne'](query,{$set:data},(err,result)=>{
             if(err){
                 reject({
                     code:0,
-                    msg:"更新失败",
+                    msg:'更新失败',
                     data:err
                 });
-                // reject(result);
-                return;
             }else{
+
                 resolve({
                     code:1,
-                    msg:"更新成功",
+                    msg:'success',
                     data:result
                 });
-                // resolve(result);
             }
-            //关闭数据库,避免资源浪费
+
+
+            // 关闭数据库，避免资源浪费
             client.close();
         });
+    
     });
-};
+}

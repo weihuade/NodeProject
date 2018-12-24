@@ -1,11 +1,17 @@
-//把路由封装成模块
+
+//﻿把路由封装成模块
+
 
 const express = require("express");
 const bodyParser = require("body-parser");
 
 let urlencodedParser = bodyParser.urlencoded({extended:false});
 let Router = express.Router();
-const db = require("../db");
+
+const db = require("../db/goodsindex");
+
+//const db = require("../db");
+
 
 
 Router.route("/")

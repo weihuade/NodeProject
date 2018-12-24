@@ -35,9 +35,9 @@
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
                             <ul>
-                                <li class="hover">商品列表</li>
-                                <li class="hover">商品分类</li>
-                                <li class="hover">添加商品</li>
+                                <a href="./goodslist.html"><li class="hover">商品列表</li></a>
+                                <a href="./goodscategory.html"> <li class="hover">商品分类</li></a>
+                                <a href="./goodsadd.html"><li class="hover">添加商品</li></a>
                             </ul>
                         </div>
                     </div>
@@ -53,8 +53,8 @@
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                     <div class="card-body">
                             <ul>
-                                <a href="http://localhost:1809/html/userslist.html"><li class="hover">用户列表</li></a>
-                                <li class="hover">添加用户</li>
+                                <a href="./userslist.html"><li class="hover">用户列表</li></a>
+                                <a href="./adduser.html"><li class="hover">添加用户</li></a>
                             </ul>
                     </div>
                     </div>
@@ -300,7 +300,7 @@
 			xhr.open('put','/adduser/adduser1',true);
 			xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 			xhr.send(data);
-						
+//						console.log(data);
 		}else{
 			hint.innerHTML='请填入完整的信息';
 			hint.style.color='red';

@@ -556,7 +556,7 @@ function ajax(mechod,url,data,success){
 					success(xhr.responseText);//实参
 				}
 			}else{
-				alert('出错了，状态码是：'+xhr.status);//404 找不到页面，408请求超时
+//				alert('出错了，状态码是：'+xhr.status);//404 找不到页面，408请求超时
 			}
 		}
 	}

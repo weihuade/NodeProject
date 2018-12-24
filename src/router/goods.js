@@ -1,11 +1,15 @@
-//把路由封装成模块
+
 
 const express = require("express");
 const bodyParser = require("body-parser");
 
 let urlencodedParser = bodyParser.urlencoded({extended:false});
 let Router = express.Router();
-const db = require("../db");
+
+const db = require("../db/goodsindex");
+
+//const db = require("../db");
+
 
 //查询所有数据,所以query传回去的是判断条件{}
 // Router.get("/",async(req,res)=>{
