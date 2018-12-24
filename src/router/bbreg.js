@@ -11,23 +11,32 @@ const MongoClient = mongodb.MongoClient;
 Router.post('/checkname',urlencodedParser,(req,res)=>{
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
-// console.log(req.body.use)
 MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("nodeproject");
-    console.log(req.body.use)
-    var whereStr = {"name":req.body.use};  // 查询条件
-    dbo.collection("username").find(whereStr).toArray(function(err, result) {
+    let user=Number(req.body.use); 
+    let conllect="username";
+//  getTotal(conllect,user);
+//  function getTotal(names,uses){
+//  	return new Promise((resolve,reject)=>{
+//  		let countNum=db.collection(names).find("name":uses)
+//  	})
+//  }
+//  
+//var whereStr = {"name":`${req.body.use}`};  // 查询条件
+  //find({"name":18377852269})中这种结构才能查到结果。
+    dbo.collection("username").find({"name":Number(req.body.use)}).toArray(function(err, result) {
         if (err) throw err;
-        console.log(result)
-          if(true){
+       
+       	//当返回的值不为空的时候就是说明有数据存在了
+       	if(result){
                 res.send({
                     code:0,
                     msg:'fail'
                 })
             }
             else{
-                res.send({
+            	res.send({
                     code:1,
                     msg:'ok'
                 })

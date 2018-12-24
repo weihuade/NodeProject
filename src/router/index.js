@@ -16,9 +16,6 @@ const bbregRouter=require('./bbreg') //贝贝注册页。
 
 
 
-
-const goodsRouter = require("./goods");
-
 const editGoodsRouter = require("./editGoods"); 
 
 let Router=express.Router();
@@ -45,18 +42,17 @@ Router.use('/adduser',adduserRouter);
 //关于用户列表的路由
 
 Router.use('/userslist',userslistRouter);
-Router.use("/goods",goodsRouter);
 
 
 
 //贝贝网首页的路由
 Router.use('/bbhome', bbhoemRouter);
-<<<<<<< HEAD
+
 
 Router.use("/goods",goodsRouter);//商品列表的路由 
 
 Router.use("/editGoods",editGoodsRouter);//商品添加页面的路由
-=======
+
 //贝贝网列表页的路由
 Router.use('/bblist', bblistRouter);
 //贝贝网详情页的路由
@@ -64,6 +60,6 @@ Router.use('/bbgoods', bbgoodsRouter);
 //贝贝购物车
 Router.use('/bbcars', bbcarsRouter);
 Router.use('/bbreg', bbregRouter);
->>>>>>> 60d55cd9fd7889ccdbf55fcd11da7ad5b0922e86
+
 
 module.exports=Router;

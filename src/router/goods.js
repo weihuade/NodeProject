@@ -62,24 +62,24 @@ Router.route("/")
         if(mth){//排序分支
             if(flag=='true'){//升序
                 rank = 1;
-                data = await db.sort("goodslist",{quy,mth,rank,page,qty});
+                data = await db.sort("list",{quy,mth,rank,page,qty});
             }
             if(flag=='false'){//降序
                 rank = -1;
-                data = await db.sort("goodslist",{quy,mth,rank,page,qty});
+                data = await db.sort("list",{quy,mth,rank,page,qty});
             }
         }
         else{//默认分支(不排序)
-            data = await db.page("goodslist",{quy,mth,flag,page,qty});
+            data = await db.page("list",{quy,mth,flag,page,qty});
         }
-        sum = await db.find("goodslist",quy);
+        sum = await db.find("list",quy);
         // console.log(sum);
         res.send({data,sum});
     })
     .post(urlencodedParser,async(req,res)=>{
         let data;
         try {
-            data = await db.update("goodslist",{},{...req.body});
+            data = await db.update("list",{},{...req.body});
         } catch (err) {
             data = err;
         }
@@ -95,7 +95,7 @@ Router.route("/")
         let data;
         try {
             //先扩展req.body,再插入time
-            data = await db.insert("goodslist",{...req.body,create_time:Date.now()});
+            data = await db.insert("list",{...req.body,create_time:Date.now()});
         } catch (err) {
             data = err;
         }
@@ -115,7 +115,7 @@ Router.route("/")
         // console.log(typeof(req.body),req.body);
         let data; 
         try {
-            data = db.delete("goodslist",{...req.body});
+            data = db.delete("list",{...req.body});
         } catch (err) {
             data = err;
         }

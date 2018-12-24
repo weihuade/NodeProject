@@ -21,7 +21,7 @@ Router.post('/login',urlencodedParser,(req,res)=>{
         let db = database.db('nodeproject');
 	
         // 使用集合
-        let user = db.collection('username');
+        let user = db.collection('administrator');
         
         // 处理password为数字的情况,处理username为数字的情况
 //       username = isNaN(username) ? username : username*1;

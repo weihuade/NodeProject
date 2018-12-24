@@ -13,7 +13,7 @@ Router.route("/")
     // console.log(req.query);
     let data;
     try {
-        data = await db.find("goodslist",{...req.query});
+        data = await db.find("list",{...req.query});
     } catch (err) {
         data = err;
     }
@@ -23,7 +23,7 @@ Router.route("/")
         // console.log(req.body);
         let data;
         try {
-            data = await db.update("goodslist",req.body,{...req.body});
+            data = await db.update("list",req.body,{...req.body});
         } catch (err) {
             data = err;
         }
@@ -34,7 +34,7 @@ Router.route("/")
         let data;
         try {
             //先扩展req.body,再插入time
-            data = await db.insert("goodslist",{...req.body,create_time:new Date()});
+            data = await db.insert("list",{...req.body,create_time:new Date()});
         } catch (err) {
             data = err;
         }

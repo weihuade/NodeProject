@@ -84,7 +84,7 @@
 
             //请求数据
             let page = 1;
-            let qty = 2;
+            let qty = 10;
             let mthod = "";
             let flag = false;
             let category = "";
@@ -326,10 +326,10 @@
                     page_more.innerHTML = `
                                             <div class="p-option fl">
                                                 <select name="" id="changPage">
-                                                    <option value="2">2条/页</option>
-                                                    <option value="4">4条/页</option>
-                                                    <option value="6">6条/页</option>
-                                                    <option value="8">8条/页</option>
+                                                    <option value="5">5条/页</option>
+                                                    <option value="10">10条/页</option>
+                                                    <option value="15">15条/页</option>
+                                                    <option value="20">20条/页</option>
                                                     
                                                 </select>
                                             </div>
@@ -468,8 +468,13 @@
                                 请选择分类
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#" data-value="phone">手机</a>
-                                    <a class="dropdown-item" href="#" data-value="computer">电脑</a>
+                                    <a class="dropdown-item" href="#" data-value="套装">套装</a>
+                                    <a class="dropdown-item" href="#" data-value="运动">运动</a>
+                                    <a class="dropdown-item" href="#" data-value="秋冬款">秋冬款</a>
+                                    <a class="dropdown-item" href="#" data-value="卫衣裤">卫衣裤</a>
+                                    <a class="dropdown-item" href="#" data-value="内衣裤">内衣裤</a>
+                                    <a class="dropdown-item" href="#" data-value="家居服">家居服</a>
+                                    <a class="dropdown-item" href="#" data-value="休闲">休闲</a>
                                     <a class="dropdown-item" href="#" data-value="">全部</a>
                                 </div>
                             </li>
